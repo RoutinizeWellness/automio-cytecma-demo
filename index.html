@@ -1,244 +1,552 @@
 <!doctype html>
-<html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<title>Assistent de compres amb aprovacions · Demo CYTECMA v4</title>
-<style>
-:root{--bg:#f4f5f8;--card:#fff;--ink:#1c2b43;--mute:#667085;--line:#e3e7ee;--acc:#E30613;--navy:#172c65;--blubg:#e9edf9;--accbg:#fdecea;--amb:#9a5b00;--ambbg:#fff3df;--grn:#17663a;--grnbg:#e4f5ea}
-*{box-sizing:border-box}html,body{margin:0}
-body{font:14px/1.45 "Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-.app{display:grid;grid-template-columns:224px 1fr;min-height:100vh}
-aside{background:#fff;border-right:1px solid var(--line);padding:20px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:3px}
-.brand{padding:2px 10px 14px;border-bottom:1px solid var(--line);margin-bottom:10px}.brand img{max-height:30px;max-width:170px;display:block}.brand small{display:block;margin-top:10px;font-size:10px;letter-spacing:.12em;color:#7d8797;font-weight:600}
-aside a{display:flex;align-items:center;gap:8px;color:#2c3a54;text-decoration:none;padding:10px 12px;border-radius:8px;cursor:pointer;border-left:3px solid transparent;font-weight:500}
-aside a:hover{background:#f4f6fa}aside a.on{background:var(--blubg);color:var(--navy);font-weight:700;border-left-color:var(--acc)}
-.n{margin-left:auto;background:var(--acc);color:#fff;border-radius:99px;font-size:11px;padding:0 7px;line-height:18px;font-weight:600}
-.side-foot{margin-top:auto;font-size:11.5px;color:var(--mute);border-top:1px solid var(--line);padding:12px 8px;line-height:1.6}
-main{padding:0 26px 46px;min-width:0}
-.topbar{height:60px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid var(--line);margin:0 -26px 18px;padding:0 26px}
-.topbar img{max-height:26px;max-width:150px}.topbar .sp{flex:1}.pill{font-size:11px;font-weight:700;letter-spacing:.06em;background:var(--ambbg);color:var(--amb);border:1px solid #f1d19a;border-radius:99px;padding:3px 10px;white-space:nowrap}
-.version{font-size:11px;color:var(--mute);letter-spacing:.05em}
-h1{font-size:21px;margin:0;color:var(--navy)}h2{font-size:15px;margin:0 0 10px;color:var(--navy)}h3{font-size:13px;color:var(--navy)}.sub{color:var(--mute);margin:2px 0 16px}
-.grid{display:grid;gap:14px}.k4{grid-template-columns:repeat(4,1fr)}.k3{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:1.5fr 1fr}
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Automio OS · CYTECMA — Compras de proyecto (demo)</title>
+<style>:root{--bg:#eef0f4;--card:#fff;--ink:#1c2b43;--mute:#667085;--line:#e3e7ee;--side:#fff;--red:#d92d20;--redbg:#fee4e2;--amb:#b54708;--ambbg:#fff3df;--grn:#067647;--grnbg:#dcfae6;--acc:#C8102E;--accbg:#fdecea;--accink:#a30f24;--navy:#172c65}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font:13px/1.45 "Inter","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+aside{background:var(--side);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto}
+.brand{padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+.brand .logo{display:flex;align-items:center;gap:9px}
+.brand .mark{width:30px;height:30px;border-radius:7px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.02em}
+.brand .bn{font-weight:700;font-size:13.5px;color:var(--navy)}
+.brand .bs{font-size:10px;letter-spacing:.14em;color:#8a94a6;font-weight:600;margin-top:2px}
+nav{padding:10px 8px;flex:1}
+nav .sec{font-size:10px;letter-spacing:.12em;color:#98a2b3;font-weight:700;padding:12px 10px 5px;text-transform:uppercase}
+nav a{display:flex;align-items:center;gap:9px;color:#34405a;text-decoration:none;padding:7px 10px;border-radius:7px;cursor:pointer;font-weight:500;font-size:13px;margin-bottom:1px}
+nav a svg{width:16px;height:16px;stroke:#667085;flex:none}
+nav a:hover{background:#f2f4f8}
+nav a.on{background:var(--accbg);color:var(--accink);font-weight:600}
+nav a.on svg{stroke:var(--acc)}
+nav a .n{margin-left:auto;background:var(--acc);color:#fff;border-radius:99px;font-size:10.5px;padding:0 6px;line-height:16px;font-weight:700}
+.side-foot{font-size:11px;color:var(--mute);border-top:1px solid var(--line);padding:10px 14px;line-height:1.55}
+main{min-width:0;display:flex;flex-direction:column}
+.topbar{height:52px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid var(--line);padding:0 22px;position:sticky;top:0;z-index:15}
+.topbar .crumb{font-weight:600;color:var(--navy);font-size:13.5px}
+.topbar .gsearch{flex:1;max-width:420px;position:relative}
+.topbar .gsearch input{width:100%;border:1px solid var(--line);background:#f6f7f9;border-radius:8px;padding:7px 12px 7px 32px;font-size:12.5px}
+.topbar .gsearch svg{position:absolute;left:10px;top:8px;width:15px;height:15px;stroke:#98a2b3}
+.topbar .sp{flex:1}
+.pill{font-size:10.5px;font-weight:700;letter-spacing:.05em;background:var(--ambbg);color:var(--amb);border:1px solid #f1d19a;border-radius:99px;padding:4px 11px;white-space:nowrap}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.content{padding:20px 22px 60px}
+h1{font-size:19px;margin:0;color:var(--navy);letter-spacing:-.01em}
+.sub{color:var(--mute);margin:3px 0 16px;font-size:12.5px}
+.row-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.row-head .sp{flex:1}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
-.kpi b{font-size:27px;display:block;line-height:1.1;color:var(--navy)}.kpi span{color:var(--mute);font-size:12.5px}
-.kpi.bad b{color:var(--acc)}.kpi.warn b{color:var(--amb)}
-.tag{display:inline-block;border-radius:99px;padding:2px 9px;font-size:12px;font-weight:600;white-space:nowrap}
-.t-red{background:var(--accbg);color:#b42318}.t-amb{background:var(--ambbg);color:var(--amb)}.t-grn{background:var(--grnbg);color:var(--grn)}.t-blu{background:var(--blubg);color:var(--navy)}.t-gry{background:#eef0f3;color:#475467}
-.mut{color:var(--mute)}.small{font-size:12.5px}
-.item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:flex-start}.item:last-child{border:0}.item:hover{background:#fafbfd}
-.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:none}.d-red{background:var(--acc)}.d-amb{background:#e8890c}.d-blu{background:var(--navy)}.d-gry{background:#a7b0bf}.d-grn{background:#1f9d55}
-.item .b{flex:1;min-width:0}
-button.btn{font:inherit;font-size:13px;border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:7px 13px;cursor:pointer}button.btn.ghost{background:#fff;color:var(--navy);border-color:#c9d0e0}button.btn.soft{background:var(--blubg);color:var(--navy);border-color:var(--blubg)}button:disabled{opacity:.45;cursor:default}
-.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-table{width:100%;border-collapse:collapse}th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);text-align:left;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap;background:#f8f9fb}
-td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}tr.row{cursor:pointer}tr.row:hover td{background:#f8f9fc}.tw{overflow-x:auto}
-.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 12px;cursor:pointer;font:inherit;font-size:13px}.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:0 0 12px}
+.grid{display:grid;gap:14px;margin-bottom:14px}
+.k4{grid-template-columns:repeat(4,1fr)}.k3{grid-template-columns:repeat(3,1fr)}.k2{grid-template-columns:1fr 1fr}.two{grid-template-columns:1.6fr 1fr}
+.kpi b{font-size:24px;display:block;line-height:1.1;color:var(--navy);font-weight:750}
+.kpi span{color:var(--mute);font-size:12px}
+.kpi .d{font-size:11px;margin-top:4px}
+.kpi.bad b{color:var(--red)}.kpi.warn b{color:var(--amb)}.kpi.ok b{color:var(--grn)}
+.tag{display:inline-block;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;white-space:nowrap}
+.t-red{background:var(--redbg);color:#b42318}.t-amb{background:var(--ambbg);color:var(--amb)}.t-grn{background:var(--grnbg);color:var(--grn)}.t-blu{background:var(--accbg);color:var(--accink)}.t-gry{background:#eef0f3;color:#475467}.t-pur{background:#f0e9fa;color:#6941c6}
+.mut{color:var(--mute)}.small{font-size:12px}.b{font-weight:600}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
-input,select,textarea{font:inherit;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;color:var(--ink)}input[type=search]{min-width:220px;flex:1}
-textarea{width:100%;min-height:170px;line-height:1.55}
-.bar{height:7px;background:#eceef2;border-radius:99px;overflow:hidden;min-width:70px}.bar i{display:block;height:100%;background:var(--navy)}
-.bar.risk i{background:var(--acc)}
-.tl{margin:10px 0 0;padding:0;list-style:none;border-left:2px solid var(--line)}.tl li{padding:0 0 10px 14px;position:relative;font-size:13px}.tl li:before{content:"";position:absolute;left:-6px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--navy)}
-.kv{display:grid;grid-template-columns:130px 1fr;gap:5px 10px;margin:12px 0}.kv div:nth-child(odd){color:var(--mute)}
-.drawer{position:fixed;inset:0;background:rgba(10,20,40,.45);display:none;z-index:20}.drawer.on{display:block}
-.panel{position:absolute;right:0;top:0;bottom:0;width:min(620px,100%);background:#fff;padding:22px;overflow:auto}
-.x{float:right;border:0;background:#eef0f3;border-radius:8px;width:34px;height:34px;font-size:18px;cursor:pointer}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#172c65;color:#fff;padding:9px 16px;border-radius:8px;font-size:13px;z-index:40;display:none}
-.why{background:var(--blubg);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13px;line-height:1.55}
-.mailprev{background:#f7f8fa;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;margin-top:10px}
-.mailprev .mh{color:var(--mute);font-size:12px;margin-bottom:6px}
-.tabs{display:flex;gap:6px;margin-bottom:14px;border-bottom:1px solid var(--line)}.tabs button{border:0;background:none;font:inherit;padding:9px 14px;cursor:pointer;color:var(--mute);border-bottom:3px solid transparent}.tabs button.on{color:var(--navy);font-weight:700;border-bottom-color:var(--acc)}
-.banner{background:var(--accbg);border:1px solid #f3c1be;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;display:flex;gap:10px;align-items:flex-start}.banner b{color:#b42318}
-.banner.amber{background:var(--ambbg);border-color:#f1d19a}.banner.amber b{color:var(--amb)}
-.dec{font-size:12px;color:var(--grn);font-weight:600}
-.dec.rej{color:#b42318}
-.src-list a{color:var(--navy);word-break:break-all}.src-list li{margin:5px 0}
-.ofcard .lines li{margin:6px 0;list-style:none}.ofcard ul{padding:0;margin:10px 0}
-.empty{padding:22px 4px;color:var(--mute)}
-nav.mob{display:none}
-@media(max-width:900px){.app{display:block}aside{display:none}main{padding:0 12px 96px}.topbar{margin:0 -12px 14px;padding:0 12px;height:52px}.topbar .version{display:none}
-.k4{grid-template-columns:1fr 1fr}.k3{grid-template-columns:1fr}.two{grid-template-columns:1fr}.hide-m{display:none}input[type=search]{min-width:0;width:100%}.kv{grid-template-columns:104px 1fr}
-nav.mob{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:10;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom))}
-nav.mob a{color:#444;text-decoration:none;font-size:11px;text-align:center;padding:6px 2px;flex:1;border-top:3px solid transparent}nav.mob a.on{color:var(--navy);font-weight:700;border-top-color:var(--acc)}
-nav.mob a .n{margin:2px auto 0;display:inline-block}
-td,th{padding:8px 5px}}
-@media(max-width:700px){table.cmdt,table.cmdt tbody,table.cmdt tr,table.cmdt td{display:block;width:100%}table.cmdt thead{display:none}table.cmdt tr{padding:12px 4px;border-bottom:1px solid var(--line)}table.cmdt td,table.cmdt td.hide-m{padding:3px 4px;border:0;display:flex;justify-content:space-between;gap:12px;align-items:center}table.cmdt td:first-child{display:block;font-weight:700}}
-/* Workbench visual system: calm, dense enough to work, no decorative metrics. */
-:root{--bg:#f8fafb;--ink:#25333d;--navy:#223d4a;--mute:#72808a;--line:#e1e6e9;--acc:#226653;--accbg:#eaf4ef;--blubg:#edf3f2;--card:#fff;--grn:#226653;--grnbg:#eaf4ef;--amb:#8b601f;--ambbg:#faf1df}
-body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.5;background:var(--bg)}
-.app{grid-template-columns:210px minmax(0,1fr)}aside{padding:28px 12px 14px;background:#f1f4f3;border-color:#dce3df}.brand{padding:0 12px 26px;margin:0 0 18px;border:0}.brand img{max-height:31px;max-width:156px;object-fit:contain}.brand small{font-size:9px;letter-spacing:.15em;margin-top:16px;color:#7c8a83}.nav-section{padding:0 13px 9px;font-size:9px;color:#89958f;letter-spacing:.14em;font-weight:650}aside a{font-size:12px;padding:10px 12px;border-radius:4px;border:0;color:#526158;font-weight:500;gap:11px}aside a.on{background:#e0eae5;color:#254c3b;font-weight:650}aside a:hover{background:#e6ede9}.navicon{display:flex;color:#7a8c82}.on .navicon{color:#2a5c45}.n{background:#d5e3db;color:#345843;border-radius:3px;font-size:10px;line-height:17px;min-width:19px;text-align:center;padding:0 4px}.side-foot{padding:16px 9px 0;font-size:10px;line-height:1.6;border-color:#dbe3dd}.identity{display:flex;gap:8px;align-items:center;font-size:11px}.avatar{height:28px;width:28px;background:#dce6df;border-radius:50%;display:grid;place-items:center;font-weight:650}.independent{margin-top:16px;font-size:9px;color:#839087}
-main{padding:0 28px 32px}.topbar{height:52px;margin:0 -28px 28px;padding:0 28px;background:#fff}.topbar img{display:none}.version{font-size:11px;letter-spacing:.035em;font-weight:600;color:#4f6359}.pill{border:1px solid #dfe5e1;background:#f9fbfa;color:#7a8780;font-size:9px;font-weight:550;border-radius:3px;letter-spacing:.035em;padding:3px 7px}
-h1{font-size:25px;line-height:1.25;font-weight:650;letter-spacing:-.7px;color:#24392d}h2{font-size:16px;letter-spacing:-.3px;color:#263e30}h3{font-size:12px;color:#40564a;font-weight:600}.sub{font-size:12px;margin:8px 0 0;color:#7a877f}.heading{margin-bottom:24px}.eyebrow{font-size:9px;font-weight:650;letter-spacing:.11em;color:#8a958e;margin-bottom:8px}.headrow{display:flex;justify-content:space-between;align-items:center;gap:15px}.snapshot{font-size:10px;color:#8b978f;border:1px solid #e0e7e2;border-radius:4px;padding:5px 8px;background:#fff;white-space:nowrap}
-.card{border-radius:4px;padding:16px;border-color:#e2e8e3;box-shadow:none}.card.tw{padding:0}.tag{border-radius:3px;font-size:10px;font-weight:550;padding:2px 6px;line-height:1.5}.t-red{background:#faece8;color:#aa5644}.t-blu{background:#edf1f5;color:#526b80}.t-amb{background:#faf1df;color:#99732e}.t-gry{background:#f0f3f1;color:#77847b}
-button.btn{font-size:11px;font-weight:600;border-radius:4px;padding:8px 13px;min-height:34px}.btn.ghost{color:#5f7166!important;border-color:#d5dfd8!important}.btn.soft{background:#eef3ef!important}.chip{border-radius:4px;font-size:11px;padding:6px 10px}.chip.on{background:#e8f0eb;color:#2b5b41;border-color:#cbded1}.tools{margin-bottom:14px;gap:10px}.tools input{max-width:360px}.tools #chips{display:flex;gap:4px}
-input,select,textarea{font-size:12px;border-radius:4px;border-color:#dce4df}input:focus,textarea:focus{outline:2px solid #bbd0c2;outline-offset:1px}button:focus-visible,a:focus-visible{outline:2px solid #55856a;outline-offset:2px}textarea{min-height:225px;resize:vertical;font-size:12px;background:#fff;line-height:1.8;padding:14px;border:0}.queue-tabs{display:flex;border-bottom:1px solid #dce4df;margin-bottom:0;gap:24px;align-items:center}.queue-tabs button{font:inherit;font-size:11px;background:none;border:0;color:#7d8b82;padding:10px 0 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}.queue-tabs button.on{color:#26563c;border-color:#26563c;font-weight:650}.queue-tabs b{font-size:10px;background:#edf1ee;border-radius:3px;padding:1px 5px;margin-left:5px;font-weight:550}.queue-note{margin-left:auto;font-size:9px;color:#8d9991;white-space:nowrap}
-.workbench{display:grid;grid-template-columns:minmax(285px,34%) minmax(0,1fr);border:1px solid #e0e7e1;border-top:0;min-height:610px;background:#fff;border-radius:0 0 4px 4px;overflow:hidden}.queue{border-right:1px solid #e1e7e2;background:#fff}.queue-search{padding:14px 16px;border-bottom:1px solid #edf0ed}.queue-search input{width:100%;min-width:0;background:#f7f9f7;border:1px solid #e9eeea;font-size:11px;padding:8px 10px}.queue-row{display:block;width:100%;text-align:left;background:none;color:var(--ink);border:0;border-bottom:1px solid #e9eee9;border-left:3px solid transparent;padding:17px 17px 16px 14px;font:inherit;cursor:pointer}.queue-row:hover{background:#f8faf8}.queue-row.selected{background:#f0f6f2;border-left-color:#3e7d58}.queue-meta{display:flex;justify-content:space-between;gap:6px;font-size:9px;color:#859188;margin-bottom:9px}.priority{color:#6c8674}.priority.urgent{color:#b46d45}.priority.urgent:before{content:' ';display:inline-block;width:4px;height:4px;background:#c18350;border-radius:50%;margin:0 4px 2px 0}.queue-row strong{font-size:12px;font-weight:600;display:block;line-height:1.5;color:#35493b}.queue-supplier{font-size:10px;color:#7c8c80;margin-top:7px}.queue-brief{font-size:10px;color:#8a978e;line-height:1.55;margin-top:6px}.queue-bottom{font-size:9px;color:#8b9b8e;display:flex;justify-content:space-between;margin-top:14px}.queue-bottom span{color:#558367}.detail-toolbar{display:flex;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #edf1ed;font-size:8px;letter-spacing:.08em;color:#8d9c90}.detail-body{padding:24px 26px 30px}.detail h2{font-size:20px;line-height:1.4;font-weight:600;letter-spacing:-.4px}.detail .kv{font-size:11px;grid-template-columns:95px 1fr;margin:20px 0;gap:8px}.why{background:#f7f9f7;border:1px solid #e8eee8;border-radius:3px;font-size:11px;line-height:1.8;padding:11px 14px;color:#637667;margin:18px 0}.why b{font-weight:600}.mailprev{border:1px solid #e3e9e3;border-radius:4px;background:#fff;padding:0;margin-top:10px}.mailprev .mh{font-size:10px;background:#fafbf9;border-bottom:1px solid #edf1eb;padding:11px 14px;line-height:1.8;margin:0;color:#788a79}.detail .act{border-top:1px solid #edf0ec;padding-top:16px;margin-top:22px}.detail .small.mut{font-size:9px;color:#8a988b}.detail label{font-size:11px}.detail label .small{font-size:10px}.decision-receipt{border-left:2px solid #73a082;padding:12px 14px;background:#f3f8f3;margin-top:20px;font-size:11px;line-height:1.9}.blank{padding:70px 35px;color:#86968b;font-size:12px}
-th{font-size:9px;letter-spacing:.04em;background:#f3f6f4;color:#859389;padding:12px 14px;font-weight:600}td{font-size:11px;padding:15px 14px;border-color:#edf1ed}td:first-child{color:#3c6650}tr.row:hover td{background:#f4f8f5}.bar{height:4px;max-width:95px;background:#eaf0eb;border-radius:2px;margin-bottom:3px}.bar i{background:#87a88e}.bar.risk i{background:#c79173}.small{font-size:10px}.panel{padding:28px;width:min(660px,100%)}.drawer{background:rgba(25,42,33,.25)}.x{border-radius:4px;font-size:20px;color:#6c7e70;background:#f1f5f1}.material-detail{margin-top:20px;padding:22px}.material-row{display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid #edf1ed;padding:15px 0;font-size:11px}.material-row .tag{min-width:57px;text-align:center}.material-row .mut{font-size:10px;margin-top:4px}.active-row td{background:#f0f6f1}.production-table{min-width:600px}.tabs{gap:14px}.tabs button{font-size:12px;padding:8px 0}.tabs button.on{border-color:#427456}.toast{background:#264c36;border-radius:4px;font-size:11px;max-width:90%;text-align:center}.banner{background:none;border:0;border-left:2px solid #c49367;border-radius:0;padding:6px 12px}.ofcard{border-radius:4px}
-@media(min-width:1600px){main{padding-left:42px;padding-right:42px}.topbar{margin-left:-42px;margin-right:-42px;padding:0 42px}.workbench{min-height:700px}}
-@media(max-width:1100px) and (min-width:901px){.app{grid-template-columns:180px minmax(0,1fr)}aside{padding-left:8px;padding-right:8px}main{padding-left:20px;padding-right:20px}.topbar{margin-left:-20px;margin-right:-20px;padding:0 20px}.workbench{grid-template-columns:290px minmax(0,1fr)}.detail-body{padding:20px}.queue-note{display:none}}
-@media(max-width:900px){.app{display:block}main{padding:0 14px 95px}.topbar{height:51px;padding:0 14px;margin:0 -14px 22px}.topbar img{display:block;max-height:23px;max-width:110px}.topbar .version{display:none}h1{font-size:24px}.heading{margin-bottom:20px}.snapshot{display:none}.eyebrow{font-size:8px}.sub{font-size:11px}.queue-tabs{gap:19px}.queue-tabs button{font-size:11px}.queue-note{display:none}.workbench{grid-template-columns:1fr;min-height:0}.queue{border-right:0}.queue-row{padding:16px}.queue-row strong{font-size:13px}.queue-meta,.queue-supplier,.queue-brief{font-size:11px}.queue-bottom{font-size:10px}.detail{display:none}.queue-search{padding:13px}.queue-search input{font-size:16px}.queue-tabs b{font-size:10px}.panel{width:100%;padding:21px;bottom:0;top:0}.panel h2{font-size:20px;line-height:1.45}.panel .kv{font-size:12px;grid-template-columns:90px 1fr}.panel textarea{font-size:16px;min-height:280px}.panel input:not([type=radio]){font-size:16px}.panel .why{font-size:12px}.panel .btn{font-size:12px;min-height:42px}.panel label{font-size:12px}.act{gap:8px}nav.mob{padding-top:4px;box-shadow:0 -2px 10px #183e2410}nav.mob a{font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;border-top-width:2px;color:#8a978d;padding:7px 0 3px}nav.mob a.on{color:#396348;border-color:#4f805d}nav.mob .n{display:none!important}.tools{display:block}.tools input{width:100%;max-width:none;font-size:16px}.tools #chips{margin-top:12px;gap:5px;flex-wrap:wrap}.chip{font-size:11px;padding:6px 9px}table.cmdt tr{padding:14px 12px}table.cmdt td,table.cmdt td.hide-m{padding:4px 0;font-size:12px;display:block}table.cmdt td:first-child{font-size:13px}table.cmdt td.hide-m:before{content:'Data: ';color:#8a978e}.card.tw{overflow:auto}.material-detail{padding:16px}.material-detail .headrow{display:block}.material-row{gap:12px;font-size:12px}.material-row .mut{font-size:11px}.production-table td{padding:13px 12px}.queue-tabs{overflow:auto}.panel .small.mut{font-size:11px}}
-
-/* Original layout study: clear PO columns and restrained status hierarchy. */
-:root{--bg:#f5f7fa;--ink:#2c3645;--navy:#314b71;--acc:#355b88;--blubg:#edf2f8;--accbg:#f7eee8;--line:#e1e6ed}aside{background:#fff}aside a.on{background:#edf2f8;color:#355b88}.topbar{margin-bottom:24px}h1,h2{color:#2c3f57}.brand small,.nav-section{color:#8b96a3}.card,.workbench{border-color:#e1e6ed}.queue-row.selected{background:#f1f5fa;border-left-color:#355b88}.queue-tabs button.on{color:#355b88;border-color:#355b88}.queue-row{padding-top:19px;padding-bottom:19px}.tag{border-radius:4px}.side-foot .avatar{background:#e9eff7}.flowgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}.flowstep{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.flowstep button{flex:1;min-width:125px;background:#fff;color:#65758a;border:1px solid #dce3ec;padding:12px 8px;text-align:left;border-radius:4px;font:inherit;font-size:12px;cursor:pointer}.flowstep button.on{border-color:#5478a2;background:#eff4fa;color:#355b88}.flowstep small{display:block;margin-top:4px;font-size:10px}.proofrow{border-bottom:1px solid #e9edf2;padding:12px 0;font-size:12px}.proofrow label{display:flex;gap:9px;align-items:flex-start;line-height:1.7}.flowgrid .card h2{margin-bottom:16px}.fieldlabel{display:block;font-size:11px;color:#67798e;margin:14px 0 6px}.flowtable{min-width:440px}.draftta{min-height:220px!important;border:1px solid #dce3ec!important}.smallnote{font-size:11px;color:#758293;line-height:1.8;margin-top:12px}.flowerror{color:#a35b44;font-size:12px;margin-top:12px}.traceitem{border-left:2px solid #b3c6da;padding:8px 12px;margin:12px 0;font-size:12px;line-height:1.8}.proofdoc{background:#f7f9fc;padding:15px;border:1px solid #e3e8ef;border-radius:4px;font-size:12px;line-height:1.8}.flowmetric{padding:15px;border:1px solid #e3e8ef;background:#fff;border-radius:4px}.flowmetric b{font-size:22px;display:block;color:#314b71}.flowmetric span{font-size:11px;color:#8190a1}.flowmetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0 20px}@media(max-width:900px){.flowgrid{grid-template-columns:1fr}.flowstep{gap:6px}.flowstep button{min-width:40%;font-size:11px}.flowmetrics{grid-template-columns:1fr}.flowmetric{display:flex;gap:15px;align-items:center}.flowmetric b{font-size:20px}.queue-note{display:none}.flowtable{font-size:11px}.card{padding:14px}.flowgrid input{max-width:100%;min-width:0}.flowgrid textarea{font-size:12px}.topbar{gap:5px}.pill{font-size:8px}.snapshot{display:none}nav.mob{overflow-x:auto;justify-content:flex-start}nav.mob a{min-width:64px}.tw::after{content:'Llisca per veure totes les columnes →';display:block;padding:8px 12px;font-size:10px;color:#8491a0}}
-</style></head><body>
-<div class="app"><aside id="side"></aside><main>
-<div class="topbar"><img id="tl" alt="CYTECMA"><span class="version">AUTOMIO · COMPRES v4</span><span class="sp"></span><span class="pill">DEMO · DADES FICTÍCIES</span></div>
-<div id="view"></div></main></div>
-<nav class="mob" id="mob"></nav><div class="drawer" id="dr"><div class="panel" id="pn"></div></div><div class="toast" id="toast"></div>
+.tools .sp{flex:1}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 12px;cursor:pointer;font:inherit;font-size:12px;color:#34405a}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip .c{opacity:.65;font-size:11px;margin-left:3px}
+input,select,textarea{font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:7px;padding:7px 10px;background:#fff;color:var(--ink)}
+input[type=search],input[type=text]{min-width:200px}
+textarea{width:100%;min-height:150px;line-height:1.55}
+button.btn{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:7px;padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+button.btn.ghost{background:#fff;color:var(--navy);border-color:#cbd2e0}
+button.btn.soft{background:var(--accbg);color:var(--accink);border-color:transparent}
+button.btn.danger{background:#fff;color:#b42318;border-color:#f0c4c0}
+button:disabled{opacity:.45;cursor:default}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:#f8f9fb;font-weight:700;position:sticky;top:0}
+td{padding:8px 12px;border-bottom:1px solid #eef0f4;vertical-align:middle;white-space:nowrap}
+td.wrap{white-space:normal}
+tr.row{cursor:pointer}tr.row:hover td{background:#f6f8fc}
+tr.sel td{background:var(--accbg)}
+.tfoot{display:flex;align-items:center;gap:10px;padding:8px 12px;font-size:11.5px;color:var(--mute);background:#f8f9fb;border-top:1px solid var(--line)}
+.bar{height:6px;background:#eceef2;border-radius:99px;overflow:hidden;min-width:70px}.bar i{display:block;height:100%;background:var(--navy)}
+.bar.risk i{background:var(--red)}.bar.warn i{background:#e8890c}.bar.ok i{background:var(--grn)}
+.drawer{position:fixed;inset:0;background:rgba(15,23,42,.42);display:none;z-index:30}
+.drawer.on{display:block}
+.panel{position:absolute;right:0;top:0;bottom:0;width:min(680px,100%);background:#fff;padding:0;overflow-y:auto;box-shadow:-8px 0 30px rgba(15,23,42,.18)}
+.panel .ph{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 22px 0;z-index:2}
+.panel .pb{padding:16px 22px 40px}
+.panel h2{font-size:17px;margin:0;color:var(--navy)}
+.x{float:right;border:0;background:#eef0f3;border-radius:7px;width:30px;height:30px;font-size:16px;cursor:pointer;color:#475467}
+.tabs{display:flex;gap:2px;margin-top:12px}
+.tabs button{border:0;background:none;font:inherit;font-size:12.5px;padding:9px 12px;cursor:pointer;color:var(--mute);border-bottom:2px solid transparent;font-weight:500}
+.tabs button.on{color:var(--acc);font-weight:650;border-bottom-color:var(--acc)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#101828;color:#fff;padding:10px 18px;border-radius:8px;font-size:12.5px;z-index:60;display:none;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.why{background:var(--accbg);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:12.5px;line-height:1.55;color:var(--accink)}
+.note{background:#f8f9fb;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12.5px;color:#475467}
+.banner{background:var(--ambbg);border:1px solid #f1d19a;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;display:flex;gap:10px;align-items:flex-start;color:#7a4a00}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;margin:12px 0;font-size:12.5px}
+.kv div:nth-child(odd){color:var(--mute)}
+.tl{margin:8px 0 0;padding:0;list-style:none}
+.tl li{padding:0 0 12px 18px;position:relative;font-size:12.5px;border-left:2px solid var(--line);margin-left:5px}
+.tl li:before{content:"";position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid var(--navy)}
+.tl li b{display:block;color:var(--navy)}
+.tl .w{color:var(--mute);font-size:11.5px}
+.docview{background:#f8f9fb;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:12.5px}
+.mailprev{background:#f7f8fa;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:12.5px;margin-top:10px}
+.mailprev .mh{color:var(--mute);font-size:11.5px;margin-bottom:6px}
+.qitem{display:flex;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:10px;align-items:flex-start;cursor:pointer}
+.qitem:hover{border-color:#c9d0e0;box-shadow:0 2px 8px rgba(15,23,42,.06)}
+.dot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:none}
+.d-red{background:var(--red)}.d-amb{background:#e8890c}.d-blu{background:var(--navy)}.d-gry{background:#a7b0bf}.d-grn{background:#1f9d55}
+.qitem .b{flex:1;min-width:0}
+.qitem .t{font-weight:600;color:var(--navy);font-size:13px}
+.qitem .m{color:var(--mute);font-size:12px;margin-top:2px}
+.src{font-size:10.5px;color:#98a2b3}
+.chart{display:flex;align-items:flex-end;gap:8px;height:110px;padding-top:6px}
+.chart .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.chart .col .v{font-size:11px;font-weight:700;color:var(--navy)}
+.chart .col .b{width:100%;max-width:38px;background:var(--accbg2,var(--accbg));border-radius:5px 5px 0 0;background:var(--navy);opacity:.85}
+.chart .col .l{font-size:10.5px;color:var(--mute)}
+.progress-steps{display:flex;gap:0;margin:14px 0}
+.progress-steps .st{flex:1;text-align:center;font-size:11px;color:var(--mute);position:relative;padding-top:16px}
+.progress-steps .st:before{content:"";position:absolute;top:4px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #d0d5dd}
+.progress-steps .st:after{content:"";position:absolute;top:9px;left:calc(-50% + 8px);right:calc(50% + 8px);height:2px;background:#e4e7ec}
+.progress-steps .st:first-child:after{display:none}
+.progress-steps .st.done{color:var(--grn);font-weight:600}
+.progress-steps .st.done:before{background:var(--grn);border-color:var(--grn)}
+.progress-steps .st.done:after{background:var(--grn)}
+.progress-steps .st.now{color:var(--acc);font-weight:700}
+.progress-steps .st.now:before{border-color:var(--acc);background:var(--acc)}
+.ofboard{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ofcard{border:1px solid var(--line);border-radius:10px;background:#fff;padding:14px}
+.ofcard h4{margin:0 0 2px;font-size:13.5px;color:var(--navy)}
+.matrow{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed #eef0f4;font-size:12px}
+.matrow:last-child{border:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:900px){.app{grid-template-columns:1fr}aside{position:fixed;z-index:50;left:-240px;transition:left .2s}aside.open{left:0}.k4{grid-template-columns:repeat(2,1fr)}.two,.k2,.split{grid-template-columns:1fr}.content{padding:14px}}
+</style></head>
+<body><div class="app" id="app"></div>
 <script>
-const C={"key": "cytecma", "name": "CYTECMA", "contact": "Víctor", "today": "2026-11-19", "tagline": "Seguiment de compres i documentació per projecte. Abast per contrastar amb Víctor.", "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAeCAYAAADTsBuJAAAMC0lEQVR4nO2ZeXCUx5nGf93fN4ek0WhGAiSQ0MFhQWIDwQbWbGxDAMfGhHVtbeJd165DbMcpxw5eAiHruExixwkpJ0V8xKG82cRJHJskrkrWN4e4HO8udsDmEgZJCAmdSEgzOkYz8x3d+8cndIAAkUpVarN6quaf/vp4+3n6PboHxjCGMYxhDGMYwxj+P0L8KYO01oJXvuWr/HNb81eCjwNwzBWfe8W9XN8rFqBq9RdWaMtZiuUopdSfYN5fP6SUJI/U+Kwz8SPzTlf/h4CLEmVeycTH195bZrd13Z347yMzpauiCn1eDwFao10XrVwEIEwfSOl91gqtFCAQUoLo11/r/nZvCrRm5LOhEdLw+ms1Qh+NELJ/PW8OrRS4NlqDkAbCNAbHDayrQQhv7v49aVcNzDFoa79dQ/dhyHNGD2FBoNFdGHxsX0l5FfUn9lyM0ysSQAr5t33VDVGf685whcAYSoAQKNsGrQkWT8ZfUIC2LJIna3F7exGmiczIxAiFQCmceNzbhNYIKTAnTEBIA5VMIgL+kQ0QAjfehTANZFZo2KbPbV2lkri9CdCg02l80QiBslJkMIjV0kr6dAPC521bmCZmNAIItGPjxrs4J5qZl4vw+QA8Wx0HgURrhQwEMHJyhu1DDOFCA0Fh5B+0kqf3pPvGX4rTUQugf/tb4/ju1+fa7fHJPiEu8CmVSpExbSqFa9cQvXkpMhgEoO/4CU6tXU/P/gNEFsxj2uYfoVJpjt9xJ6lTdWjHoejr6yi4exWx7RXIjAwii25Euwrt2CCl50WA6ktw7PZ/oGjtGnKWLB5oH4pT69bT8ftXkZmZTPji3RTcs4pAcTEAblc3rT/7OU1PPYO2bfJuX0npdx4HBN3vvkvNl1cDEJw6lfIXX8AIhbBaWzl+x5243RZCCLTrUrrxCXI+tQi7rZ2PPvtPuF1dnpf0QwC2VsmjthU/nEoduhSv8lIfh+LEh+9Md9pik7GcwvMzi0qnCS+Yz8xXtpC3cgWJg4foePV1nHgXmTPKKVzzEEJKrJZWjKws/AX5+PLycBMJcleuoPChr2C1tNLy3GaEz6Tv+Ans9jbMaBTp95OsqiJZVU18x04AIv0Ce+1VJKurSVZXkzh4kJ739yMzM5my6fuUPLYB4fPT8ftXSRw+gpETpvChB8mcORPtuuSt/AxmNIoZjeD2JtCOg1aKSasfIDC5CDMaoe9oJfbZDoSUqFSK8Xd8lry/vx0zEsHMCfeHy+EwhSChdeMp2677Y09PzaV4HbUHSCe90D59Jt80RHCoANpxCJYUM/W5ZzDz8qhdu56zv3kFty/JpAfvp+TxbxIoLUZmZGC3nsFqaiZQWoIRDpM5o5yyjU9gn+2g5oHVJKuqqfnSA7iJBEVfW0vRujW0b/kNdd94FBkM4vYlKbhnFUYoRNuLL1P71XXIQMAzRAiQEm3blD7xGHm3ryResYvateuxWlrwT5zIrN3bMXNz8edPwD9xIuGF1+N0xjBCIdKNjah0msiST5G7/Bas1lb8BQV0vvEWCIG2bTKmT2Pyw+uxOzowskLoEcgHzwNqHbuxU7sfcIkEPGoB9j9/n8/5oG+O29lTJMXwxKeVonDtGvwTC2h+9se0vfgyRlYmRrZBfMdOVDKJ3d4OWuMmEqTq6wmUlpBRfhUTv/wljFCIqru/SN/RSmRGBiiFEQqRu/wWADrf3gaGAUIggwGit90KQOLQIYJlZQP5QlsW6cYmwguvZ8Ln/4X06QZq130dp6MDIxTC7enh1L89ghkO03PgANFP34wRzia2o4KcG28g3diE9PspWr+OvqPHCBQXYTU107P/AMI0QQiKH9uAGY1S9/CjTP7GelC6P/4PJ9/VOnHYSrXZSv3P5bgdVQiKNvhmqLZYobLtwqFyatsmc0Y5uStuw24/y5kXfoHMCHoVhWGQbm6m7aUtxCp2eafIcUhWVQMw6cH7yZ4/j7pHv0V8xy6PfDyPyrrmajJnlJOsqSFx+DDS70e7LsEpZWTPnQtA2ZMbmbPvD8zeu5PZe3eSv+oudDpN/hc+jzAMWn/2AnZrK8I/mNA733ybtpe24MTi5H1mBdpxSBw6jAwESNWeIu/vVpL5sZl0vftf+CZMIFaxC6czhrYs8u/6ZyKLF3Hm5y/S9c4fkFlZXiV2nheYQtCrVUOdY53a29VVfzluR+UBOmUtTDecyfdJw+8MbXccosuWIgN+OnbvwWppGSTSttGui/D5EIbhDRCCvo+OA2BkZ9P8o820/fJXnmjn5nRdop9eBlIS316B292DzMhA2zaRxYuQmRkkq6pJ1dUPzoum87U3CZSUkHPTDbiJBPEdOwfJVwplWSAkwucjUFJM9oL59B2txI13ebHftih6+Gu0b/k1geIiAGJbt6Jdh6xZ11C07qska07S8N3v4S8q9NZW+gIBBHDSthvjuPu5sEy7cgGqnv5KwK7smOV0dBeb55XdwjQJzb8OgN79BwbaVTpN9rVzCU6dSl9lJX0nqgbIUn19APT8cT9NP9iE9PuH3QeMcJjozUtBKWLbdnjjtEYGAkT7w1LdIxvo2rN3MP7TfxiW34IRCpE4chSruQVhGGjHxcwJk7voJlQ6Teebb5Fz4w3IjCCdb2/FzMvD7ujwEnI4h47f/SflL/2SVH09vQc+xMjKouTxb2KEs5Fdcab9+FnM3NyBNfWQy2h/+Ok+ZKXaEhj7LsctjCIEyRbnaru5sxDXLRiWTbRG+Hz4xo0DwAyHUakUbm8vWbNncdUvfkrpxm+DkDDEyMiyJQB0vPo6KpUavKQByrYJzZ7lCXf8BH2VxxA+n5fop08jNGc2yRNV9O4/MCy0eDlCDthiZGQgDAO3N4GQguINjzD12R8SmvsJUIrcFctBKeIVuwiWlmAEg+Svuoump54hUFKMGY0Q27YDu62NgvvuJbzwelQqjW/cOHIW30TWnFkjcmUKQZdSDXXKqt3X2dk0GgEu6wGuZS+0G8/k+6ThGxp+EAJtWVgtLWRdczUF99+HzMrCyMpi/D9+DpkR5OTqNSSOHEEGg2jXxV9QQGTxIlQySdfed4aTCOC6RG/1Tnls63bcRMILP45DdNkShM+HGYkw/d83e6T3I1lVxenHv4PV1AxAcNpUpjy9icShw0SWLSV73rXEtm6j8XtPklFeTva860gcrSR1spbA5CKMnBySNSdpf/nXTHv+OQA6X3uD7PnzKPzX1VhNzVTdcx9uVzfKcci54ZNM2fTkwEWSIYVJtWM19bj6/dGQf1kBWr6/Nite1XK109VbbIqRngYErc//hNAn5uAbP57CNd5FJnn8BKe//V3iu/cMXMi07ZD9NwswIxHiu3aTrqsfuGkCoBRmbi45i25EpVLEdlR41YfWyMxMIkuXoF0X34TxA150DokjR0Bpet57n8633iZ3+a3k3ub9VCpFy+bnafrhM7jJJJEli0FKOl57A6TEHD8ObTs0/WATRk6Olxsqj5E6VcdVL/wEYRqcfmIjvR8eRAYCqHQat7vbe27pv/mDF0ocreOHrXRbwrZHLcAlH+M+uvfOa1O1TRusk00rpJQjhitt2wSKiwnNvw4jM5NUXT29H3yI2909PEYrhT9/AmZuLvbZDuz29mG3R90f54NlpWjHIVV7ajDBGQbBKWXD+g9FuqERN5EYCIvh6xcQmDwZt6eH3oOHSJ2s9cQWgkDhJIzsbNKnG1DpNMEpZSAEqeoaZGYmgeLJOPE4TmeMjGlTUek0qZqTA6dca40ZDuOfNBGVtkjX14PW+IXgrOscfron9rvXOjsf+7MI8MH0j8+2HetJQ4sZhhD5Cj1if6+KcADtPR34fCOS5T3SKYSUQyqYId+1RjteoBOmiRiSnJXjXNB/YBOGMbCeVso7mUp55bBpIgxz8P3tnA2GgRBiYF5hmgN7EUKAYYxsy7k13P7HRp8PAZhCJN5K9r5Xkep7qiIW23ZxVofjkiGoprryqFNUsn2fnerIEYa+fFEFuC649mjXvzjs9BX0vUi7BqyLCHf+mEutd7lvApHQrltr29VmXt4eYrGL9z8Po/o/4JOh0PhEwL3w5WsMA/CnpPteInHmL23HGMYwhjGMYQxjGMP/DfwvcHKXyi6gJV0AAAAASUVORK5CYII=", "nav": [["avui", "Avui"], ["aprovacions", "Aprovacions"], ["comandes", "Comandes"], ["mes", "Més"]], "alert": {"t": "El rodament de gir de la G-114 segueix sense data confirmada", "d": "Termini habitual de 10-12 setmanes. Sense confirmació no es pot tancar el pla de muntatge. Hi ha un seguiment preparat.", "link": "Anar a Aprovacions", "go": "aprovacions", "cls": ""}, "agenda": [["Recepció prevista: xapes S690 (CY-26-015)", "Confirmades per al 20/11. Pendent el certificat de material 3.1.", "dv 20/11"], ["Recepció prevista: tornilleria inox (CY-26-018)", "Sense confirmació encara.", "dl 23/11"], ["Proves hidràuliques de la plataforma PA-9", "Depenen del grup hidràulic; el proveïdor demana 7 dies més.", "dl 30/11"]], "sups": {"A1": {"n": "Acerània del Nord", "cat": "Acer d’alta resistència", "c": "Iker Mendia", "lt": 35}, "A2": {"n": "Hidràulica Llevant", "cat": "Grups i bombes hidràuliques", "c": "Carla Roig", "lt": 28}, "A3": {"n": "Corones i Engranatges Berguedà", "cat": "Corones de gir i cremalleres", "c": "Quim Ferrés", "lt": 70}, "A4": {"n": "Cilindres i Vàstags", "cat": "Cilindres hidràulics", "c": "Sònia Prat", "lt": 45}, "A5": {"n": "Inox i Ferreteria Naval", "cat": "Tornilleria i racoreria inox", "c": "Marc Vidal", "lt": 10}}, "orders": [{"id": "CY-26-014", "proj": "Grua marina 40 t (G-114)", "s": "A3", "od": "2026-09-28", "pd": "2026-11-27", "cd": null, "L": [{"ref": "RDM-1400", "d": "Rodament de gir amb cremallera, mecanitzada", "q": 1, "r": 0}], "imp": "Sense rodament no hi ha muntatge del conjunt giratori de la G-114", "ev": [["2026-09-28", "ERP", "Comanda emesa (termini habitual 10-12 setmanes)."], ["2026-11-05", "Correu", "Primer seguiment sense resposta."]]}, {"id": "CY-26-015", "proj": "Grua marina 40 t (G-114)", "s": "A1", "od": "2026-10-06", "pd": "2026-11-20", "cd": "2026-11-20", "L": [{"ref": "S690-12", "d": "Xapa S690 gruix 12 mm, lot de 24", "q": 24, "r": 0}, {"ref": "S690-25", "d": "Xapa S690 gruix 25 mm, lot de 10", "q": 10, "r": 0}], "imp": "Requisit documental fictici de la comanda, pendent de validació del responsable", "ev": [["2026-10-06", "ERP", "Comanda emesa."], ["2026-11-09", "Correu", "Confirmada per al 20/11."], ["2026-11-16", "ERP", "Albarà rebut sense certificat 3.1 adjunt."]]}, {"id": "CY-26-016", "proj": "Grua marina 40 t (G-114)", "s": "A4", "od": "2026-09-30", "pd": "2026-12-04", "cd": "2026-12-04", "L": [{"ref": "CIL-EXT-90", "d": "Cilindre d’extensió, crom dur, doble efecte", "q": 4, "r": 0}], "imp": "Extensions de la ploma", "ev": [["2026-09-30", "ERP", "Comanda emesa."], ["2026-11-12", "Correu", "Confirmada per al 04/12."]]}, {"id": "CY-26-017", "proj": "Plataforma aèria PA-9", "s": "A2", "od": "2026-10-21", "pd": "2026-11-23", "cd": null, "L": [{"ref": "GRP-H22", "d": "Grup hidràulic 22 kW amb vàlvula proporcional", "q": 1, "r": 0}, {"ref": "BMB-12CC", "d": "Bomba de pistons 12 cc", "q": 2, "r": 2}], "imp": "Les proves hidràuliques de la PA-9 estan previstes per al 30/11", "ev": [["2026-10-21", "ERP", "Comanda emesa."], ["2026-11-10", "ERP", "Recepció parcial: 2 bombes."], ["2026-11-16", "Correu", "El proveïdor demana 7 dies més per al grup hidràulic."]]}, {"id": "CY-26-018", "proj": "Grua marina 40 t (G-114)", "s": "A5", "od": "2026-11-10", "pd": "2026-11-23", "cd": null, "L": [{"ref": "TRN-A4-M12", "d": "Tornilleria inox A4 M12, caixa de 200", "q": 15, "r": 0}, {"ref": "RAC-3/8", "d": "Racoreria inox 3/8, assortida", "q": 80, "r": 0}], "imp": "—", "ev": [["2026-11-10", "ERP", "Comanda emesa."]]}], "aps": [{"id": "ap-y1", "type": "Seguiment", "urg": true, "order": "CY-26-014", "title": "El rodament de gir porta 7 setmanes sense data confirmada", "brief": "És el component amb el termini més llarg de la G-114.", "why": "La CY-26-014 es va emetre el 28/09 i el primer seguiment (05/11) no va tenir resposta. El rodament condiciona tot el pla de muntatge de la G-114. Proposa un correu demanant data ferma i punt de fabricació.", "draft": {"to": "Quim Ferrés <comercial@coronesbergueda-demo.example>", "subj": "Comanda CY-26-014: data ferma de el rodament RDM-1400", "body": "Bon dia Quim,\n\nLa comanda CY-26-014 (rodament de gir RDM-1400) es va emetre el 28/09 i encara no tenim data confirmada.\n\nEns podeu dir en quin punt de fabricació està i quina data ferma podem planificar? És el component que condiciona el muntatge de la grua.\n\nGràcies,\nVíctor\nCYTECMA (demo)"}}, {"id": "ap-y2", "type": "Documentació", "urg": true, "order": "CY-26-015", "title": "Falta el certificat 3.1 del lot de xapes S690", "brief": "Requisit de la comanda de mostra; revisió de qualitat pendent.", "why": "En aquest cas fictici, la comanda de mostra exigeix un document 3.1. L’albarà no l’inclou; es prepara una petició documental i la revisió queda pendent del responsable. No es dedueix cap obligació general de la certificació ISO ni es valida el material.", "draft": {"to": "Iker Mendia <qualitat@aceranianord-demo.example>", "subj": "Certificat 3.1 pendent — lot S690 (CY-26-015)", "body": "Bon dia Iker,\n\nHem rebut l’albarà del lot de xapes S690 (comanda CY-26-015) sense el certificat de material 3.1.\n\nFins no tenir-lo no podem donar conformitat a la recepció. Ens el podeu fer arribar avui?\n\nGràcies,\nVíctor\nCYTECMA (demo)"}}, {"id": "ap-y3", "type": "Canvi de data", "order": "CY-26-017", "title": "El grup hidràulic de la PA-9 demana 7 dies més", "brief": "Pot afectar les proves; cal validar l’impacte amb producció.", "why": "El proveïdor fictici proposa passar del 23/11 al 30/11. Coincideix amb les proves de mostra. La resposta i qualsevol canvi de planning requereixen revisió; no es calcula un retard de proves automàtic.", "opts": [{"t": "Estudiar el 30/11 amb producció", "d": "Demanar confirmació escrita i revisar recursos, muntatge i proves abans d’acceptar el canvi."}, {"t": "Demanar una alternativa de subministrament", "d": "Consultar possibilitats sense acceptar preu, préstec, termini ni compromís."}], "draft": {"to": "Carla Roig <vendes@hidraulicallevant-demo.example>", "subj": "RE: Comanda CY-26-017 — nova data del grup hidràulic", "body": "Bon dia Carla,\n\nRebuda la proposta de passar el grup GRP-H22 al 30/11. Just aquell dia teníem planificades les proves hidràuliques de la plataforma.\n\nHi ha opció d’enviament parcial o d’una unitat de préstec per no moure les proves? Si no, confirmem el 30/11 i ho replantifiquem.\n\nSalutacions,\nVíctor\nCYTECMA (demo)"}}, {"id": "ap-y4", "type": "Preu", "order": "CY-26-016", "title": "Reprenen la comanda de cilindres amb un 6 % de pujada", "brief": "Decisió comercial, no automàtica.", "why": "La confirmació de la CY-26-016 arriba amb un preu un 6 % superior a l’última comanda equivalent. Un canvi de preu sempre és una decisió comercial: el sistema el marca i prepara la resposta, però no accepta ni negocia sol.", "draft": {"to": "Sònia Prat <comercial@cilindresivastags-demo.example>", "subj": "Comanda CY-26-016: revisió de preu", "body": "Bon dia Sònia,\n\nA la confirmació de la comanda CY-26-016 veiem un preu un 6 % per sobre de l’última comanda equivalent.\n\nAbans de donar conformitat, ens podeu justificar la variació o revisar-la?\n\nGràcies,\nVíctor\nCYTECMA (demo)"}}], "ctx": {"whoT": "Qui és CYTECMA", "who": ["La web oficial descriu grues hidràuliques especials i a mida, marines, terrestres i projectes especials, amb enginyeria, fabricació de components i muntatge a les seves instal·lacions.", "La web diu que fabriquen internament coronas, cremalleres, vàstags i camises. No pressuposem que els comprin a tercers: cal separar compra, fabricació pròpia i subcontractació.", "La web descriu acer S690 en estructures marines i una política de qualitat segons UNE-EN-ISO 9001:2015. Això no acredita el seu circuit documental intern ni quins certificats exigeix una comanda concreta."], "reviews": ["No fem servir ressenyes ni puntuacions per deduir problemes de compres. Cal contrastar el procés i la necessitat directament amb Víctor."], "fit": ["Hipòtesi a contrastar: preparar el context d’una confirmació, una entrega parcial o un canvi de data entre correu i comanda.", "Tots els proveïdors, components comprats, quantitats, requisits documentals i terminis de les pantalles són supòsits de mostra, no una descripció del circuit de CYTECMA.", "El sistema de mostra no envia correus, no accepta canvis comercials, no valida conformitat ni integra cap ERP."], "sources": [["CYTECMA · empresa i procés", "https://www.cytecma.com/empresa/"], ["CYTECMA · productes", "https://www.cytecma.com/productos/"], ["CYTECMA · web oficial", "https://www.cytecma.com/"]]}};
-const $=s=>document.querySelector(s);
-const LS=C.key+'-v4';
-let state={route:'avui',tab:'prov',q:'',chip:'all'};
-let D; // decisions
-try{D=JSON.parse(localStorage.getItem(LS)||'{}')}catch(e){D={}}
-function saveD(){try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){}}
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',2600)}
-function go(r,x){state.route=r;if(x&&x.tab)state.tab=x.tab;closeDr();render();window.scrollTo(0,0)}
-function navHTML(a){const pend=C.aps.filter(x=>!D[x.id]).length;
- return a.map(([k,t])=>`<a class="${state.route===k?'on':''}" onclick="go('${k}')">${t}${k==='aprovacions'&&pend?`<span class="n">${pend}</span>`:''}</a>`).join('')}
-function nav(){$('#side').innerHTML=`<div class="brand"><img src="${C.logo}" alt="${C.name}"><small>ASSISTENT DE COMPRES</small></div>${navHTML(C.nav)}<div class="side-foot">Res no s'envia ni s'actualitza sense aprovació.<br><br><b>Demo independent</b>, no és un producte oficial de ${C.name}. Dades fictícies.</div>`;
- $('#mob').innerHTML=navHTML(C.nav.filter(([k])=>k!=='mes').concat([['mes','Més']]));}
-function sup(id){return C.sups[id]||{n:id,c:'',cat:''}}
-function ord(id){return C.orders.find(o=>o.id===id)}
-function recvPct(o){const q=o.L.reduce((a,l)=>a+l.q,0),r=o.L.reduce((a,l)=>a+l.r,0);return q?Math.round(r/q*100):0}
-function ordState(o){const today=C.today,p=recvPct(o);if(p===100)return['Rebuda','t-grn'];const ref=o.cd||o.pd;if(ref<today)return['En retard','t-red'];if(o.cd&&o.cd>o.pd)return['Reprogramada','t-amb'];if(p>0)return['Parcial','t-amb'];if(!o.cd)return['Sense confirmar','t-gry'];return['Confirmada','t-blu']}
-function fmtD(d){if(!d)return'—';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`}
-function decided(id){return D[id]}
-function kpi(label,val,cls){return `<div class="card kpi ${cls||''}"><b>${val}</b><span>${label}</span></div>`}
-
-/* ---------- AVUI ---------- */
-function vAvui(){const pend=C.aps.filter(a=>!D[a.id]);const open=C.orders.filter(o=>recvPct(o)<100).length;const part=C.orders.filter(o=>recvPct(o)>0&&recvPct(o)<100).length;
- let h=`<div class="heading"><h1>Bon dia, ${C.contact}</h1><div class="sub">${C.tagline} Res no s'envia ni es registra sense la teva aprovació.</div></div>`;
- h+=`<div class="grid ${C.of?'k4':'k3'}" style="margin-bottom:14px">${kpi('Aprovacions pendents',pend.length,pend.length?'warn':'')}${kpi('Comandes obertes',open)}${kpi('Recepcions parcials',part)}${C.of?kpi('Ordres de fabricació en risc',C.of.filter(o=>o.risk).length,C.of.some(o=>o.risk)?'bad':''):''}</div>`;
- if(C.alert)h+=`<div class="banner ${C.alert.cls||''}"><span class="dot ${C.alert.cls==='amber'?'d-amb':'d-red'}" style="margin-top:4px"></span><div><b>${esc(C.alert.t)}</b><br>${esc(C.alert.d)} <a href="#" onclick="go('${C.alert.go}');return false" style="color:var(--navy);font-weight:600">${esc(C.alert.link)}</a></div></div>`;
- h+=`<div class="grid two"><div class="card"><h2>Decisions pendents</h2>`;
- if(!pend.length)h+=`<div class="empty">Tot decidit. Quan entri un correu o canvii una data, la proposta apareixerà aquí.</div>`;
- pend.slice(0,3).forEach(a=>{h+=`<div class="item"><span class="dot ${a.side==='produccio'?'d-blu':a.urg?'d-red':'d-amb'}"></span><div class="b"><span class="tag ${TYPE_TAG[a.type]||'t-gry'}">${a.type}</span>${a.side?` <span class="tag t-blu">${a.side==='produccio'?'Producció':'Compres'}</span>`:''}<div style="margin-top:4px"><b>${esc(a.title)}</b></div><div class="small mut">${esc(a.brief)}</div></div><button class="btn ghost" onclick="go('aprovacions');setTimeout(()=>openAp('${a.id}'),60)">Revisar</button></div>`});
- h+=`</div><div class="card"><h2>Agenda de la setmana</h2>${C.agenda.map(a=>`<div class="item"><span class="dot d-gry"></span><div class="b"><b>${esc(a[0])}</b><div class="small mut">${esc(a[1])}</div></div><span class="small mut" style="white-space:nowrap">${esc(a[2])}</span></div>`).join('')}</div></div>`;
- $('#view').innerHTML=h}
-
-/* ---------- APROVACIONS ---------- */
-const TYPE_TAG={'Seguiment':'t-amb','Canvi de data':'t-red','Factura':'t-red','Recepció':'t-blu','Substitució':'t-amb','Documentació':'t-amb','Preu':'t-red','Comanda nova':'t-grn','Sincronització':'t-blu','Reclamació':'t-red'};
-function vApprov(){const pend=C.aps.filter(a=>!D[a.id]);const done=C.aps.filter(a=>D[a.id]);
- let h=`<div class="heading"><h1>Aprovacions</h1><div class="sub">El sistema prepara i proposa; tu decideixes cas per cas. Aprovar registra la decisió a l'historial. En aquesta demo no s'envia res.</div></div>`;
- if(!pend.length)h+=`<div class="card empty">Cap proposta pendent. Totes les decisions estan preses.</div>`;
- pend.forEach(a=>{const o=ord(a.order);h+=`<div class="card" style="margin-bottom:12px"><div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap"><div style="flex:1;min-width:230px"><span class="tag ${TYPE_TAG[a.type]||'t-gry'}">${a.type}</span>${a.side?` <span class="tag t-blu">${a.side==='produccio'?'Decideix producció':'Decideix compres'}</span>`:''}${a.urg?' <span class="tag t-red">Urgent</span>':''}<h3 style="margin:8px 0 4px;font-size:15px">${esc(a.title)}</h3><div class="small mut">${o?esc(o.id)+(o.proj?` · ${esc(o.proj)}`:'')+(a.of?` · ${a.of}`:''):''}</div><div class="why"><b>Per què ho proposa:</b> ${esc(a.why)}</div></div><button class="btn" onclick="openAp('${a.id}')">Revisar i decidir</button></div></div>`});
- if(done.length){h+=`<div class="card"><h2>Registre de decisions</h2>${done.map(a=>{const d=D[a.id];return `<div class="item"><span class="dot ${d.action==='aprovada'?'d-grn':'d-red'}"></span><div class="b"><b>${esc(a.title)}</b><div class="small"><span class="dec ${d.action==='aprovada'?'':'rej'}">${d.action==='aprovada'?'Aprovada':'Rebutjada'}</span> · ${d.ts}${d.note?` · ${esc(d.note)}`:''}</div></div><button class="btn ghost" onclick="undoAp('${a.id}')">Desfés</button></div>`}).join('')}</div>`}
- $('#view').innerHTML=h}
-function openAp(id){const a=C.aps.find(x=>x.id===id);if(!a)return;const o=ord(a.order);const d=D[id];
- let h=`<button class="x" onclick="closeDr()">×</button><span class="tag ${TYPE_TAG[a.type]||'t-gry'}">${a.type}</span>${a.side?` <span class="tag t-blu">${a.side==='produccio'?'Decideix producció':'Decideix compres'}</span>`:''}<h2 style="margin:10px 0 4px">${esc(a.title)}</h2>`;
- if(o)h+=`<div class="kv"><div>Comanda</div><div><a href="#" onclick="closeDr();openOrder('${o.id}');return false" style="color:var(--navy)">${o.id}</a>${o.proj?` · ${esc(o.proj)}`:''}</div><div>Proveïdor</div><div>${esc(sup(o.s).n)}</div><div>Promesa</div><div>${fmtD(o.pd)}${o.cd?` → confirmada ${fmtD(o.cd)}`:' (sense confirmar)'}</div></div>`;
- h+=`<div class="why"><b>Per què ho proposa:</b> ${esc(a.why)}</div>`;
- if(a.opts){h+=`<h3>Opcions</h3>${a.opts.map((op,i)=>`<label style="display:block;padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer"><input type="radio" name="opt" value="${i}" ${i===0?'checked':''} style="margin-right:8px"><b>${esc(op.t)}</b><br><span class="small mut" style="margin-left:24px">${esc(op.d)}</span></label>`).join('')}`}
- if(a.draft)h+=`<h3 style="margin-top:18px">Esborrany preparat (editable)</h3><div class="mailprev"><div class="mh">Per a: ${esc(a.draft.to)}<br>Assumpte: ${esc(a.draft.subj)}</div><textarea id="draftbody">${esc(a.draft.body)}</textarea></div>`;
- if(d){h+=`<div class="act"><span class="dec ${d.action==='aprovada'?'':'rej'}">${d.action==='aprovada'?'Aprovada':'Rebutjada'} · ${d.ts}${d.note?' · '+esc(d.note):''}</span><button class="btn ghost" onclick="undoAp('${a.id}')">Desfés</button></div>`}
- else{h+=`<div class="act"><button class="btn" onclick="decideAp('${a.id}','aprovada')">Aprova${a.draft?' i marca per enviar':''}</button>${a.draft?`<button class="btn soft" onclick="decideAp('${a.id}','aprovada',true)">Aprova amb l'edició</button>`:''}<button class="btn ghost" onclick="rejectAsk('${a.id}')">Rebutja</button></div><div class="small mut" style="margin-top:8px">Simulació: aprovar no envia correus ni escriu a cap ERP; només registra la decisió.</div>`}
- $('#pn').innerHTML=h;$('#dr').classList.add('on')}
-function rejectAsk(id){$('#pn').insertAdjacentHTML('beforeend',`<div id="rejbox" style="margin-top:14px"><h3>Motiu del rebuig</h3><input id="rejnote" style="width:100%" placeholder="Opcional"><div class="act"><button class="btn" onclick="decideAp('${id}','rebutjada')">Confirma el rebuig</button></div></div>`);$('#rejbox').scrollIntoView({behavior:'smooth'})}
-function decideAp(id,action,edited){const a=C.aps.find(x=>x.id===id);let note='';const rj=$('#rejnote');if(rj&&rj.value)note=rj.value;
- const opt=document.querySelector('input[name=opt]:checked');if(opt&&a.opts)note=(note?note+' · ':'')+'Opció: '+a.opts[Number(opt.value)].t;
- if(edited){const tb=$('#draftbody');if(tb)note=(note?note+' · ':'')+'Amb edició manual de l’esborrany'}
- D[id]={action,ts:new Date().toLocaleString('ca-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),note};saveD();closeDr();
- toast(action==='aprovada'?'Decisió aprovada i registrada (simulada, no s’ha enviat res)':'Proposta rebutjada');render()}
-function undoAp(id){delete D[id];saveD();closeDr();toast('Decisió desfeta');render()}
-
-/* ---------- COMANDES ---------- */
-function vOrders(){let h=`<div class="heading"><h1>Comandes</h1><div class="sub">Lectura de les comandes obertes. El detall mostra l'historial i permet preparar un seguiment, que sempre passa per aprovació.</div></div>`;
- h+=`<div class="tools"><input type="search" placeholder="Cerca per comanda, proveïdor o referència" value="${esc(state.q)}" oninput="state.q=this.value;vOrdersBody()"><span id="chips">${[['all','Totes'],['late','En retard'],['part','Parcials'],['noc','Sense confirmar']].map(([k,t])=>`<button class="chip ${state.chip===k?'on':''}" onclick="state.chip='${k}';vOrdersBody()">${t}</button>`).join('')}</span></div><div class="card tw" id="ot"></div>`;
- $('#view').innerHTML=h;vOrdersBody()}
-function vOrdersBody(){const q=state.q.toLowerCase();const rows=C.orders.filter(o=>{const st=ordState(o)[1];if(state.chip==='late'&&st!=='t-red')return false;if(state.chip==='part'&&recvPct(o)===0||state.chip==='part'&&recvPct(o)===100)return false;if(state.chip==='noc'&&o.cd)return false;
- if(q&&!(o.id+' '+sup(o.s).n+' '+o.L.map(l=>l.ref+' '+l.d).join(' ')).toLowerCase().includes(q))return false;return true});
- $('#ot').innerHTML=`<table class="cmdt"><thead><tr><th>Comanda</th><th>Proveïdor</th>${C.of?'<th>OF</th>':''}<th class="hide-m">Promesa</th><th class="hide-m">Confirmada</th><th>Estat</th><th>Rebut</th></tr></thead><tbody>${rows.map(o=>{const[st,cl]=ordState(o);const p=recvPct(o);return `<tr class="row" onclick="openOrder('${o.id}')"><td>${o.id}${o.proj?`<div class="small mut">${esc(o.proj)}</div>`:''}</td><td>${esc(sup(o.s).n)}</td>${C.of?`<td>${o.of||'—'}</td>`:''}<td class="hide-m">${fmtD(o.pd)}</td><td class="hide-m">${o.cd?fmtD(o.cd):'—'}</td><td><span class="tag ${cl}">${st}</span></td><td><div class="bar ${st==='En retard'?'risk':''}"><i style="width:${p}%"></i></div><span class="small mut">${p}%</span></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">Cap comanda amb aquests filtres.</td></tr>'}</tbody></table>`}
-function openOrder(id){const o=ord(id);if(!o)return;const[st,cl]=ordState(o);const s=sup(o.s);
- let h=`<button class="x" onclick="closeDr()">×</button><span class="tag ${cl}">${st}</span><h2 style="margin:10px 0 2px">${o.id}${o.proj?` · ${esc(o.proj)}`:''}</h2><div class="mut small">${esc(s.n)} · ${esc(s.cat)} · contacte: ${esc(s.c)}</div>`;
- h+=`<div class="kv"><div>Emesa</div><div>${fmtD(o.od)}</div><div>Promesa</div><div>${fmtD(o.pd)}</div><div>Confirmada</div><div>${o.cd?fmtD(o.cd):'No confirmada'}</div>${o.of?`<div>Ordre de fabricació</div><div>${esc(o.of)}</div>`:''}${o.imp?`<div>Impacte</div><div>${esc(o.imp)}</div>`:''}</div>`;
- h+=`<h3>Línies</h3><table><thead><tr><th>Ref.</th><th>Descripció</th><th>Qt.</th><th>Rebut</th></tr></thead><tbody>${o.L.map(l=>`<tr><td class="mono small">${esc(l.ref)}</td><td>${esc(l.d)}</td><td>${l.q}</td><td><div class="bar"><i style="width:${l.q?Math.round(l.r/l.q*100):0}%"></i></div><span class="small mut">${l.r}/${l.q}</span></td></tr>`).join('')}</tbody></table>`;
- h+=`<h3 style="margin-top:18px">Historial</h3><ul class="tl">${o.ev.map(e=>`<li><span class="mut small">${fmtD(e[0])} · ${esc(e[1])}</span><br>${esc(e[2])}</li>`).join('')}</ul>`;
- h+=`<div class="act"><button class="btn ghost" onclick="mkFollow('${o.id}')">Prepara un seguiment</button></div><div class="small mut" style="margin-top:6px">El seguiment no s'envia: crea una proposta a Aprovacions.</div>`;
- $('#pn').innerHTML=h;$('#dr').classList.add('on')}
-function mkFollow(id){const o=ord(id);const s=sup(o.s);const newId='ap-x-'+id;
- if(!C.aps.some(a=>a.id===newId)){C.aps.unshift({id:newId,type:'Seguiment',order:id,title:'Seguiment de la '+id+' ('+s.n+')',brief:'Proposta creada des del detall de la comanda.',why:'Preparada manualment des de la comanda. Sense confirmació actualitzada, el pla queda en risc.',draft:{to:s.c+' <comercial@proveidor-demo.example>',subj:'Estat de la comanda '+id,body:'Bon dia '+s.c.split(' ')[0]+',\n\nEns podeu confirmar l’estat de la comanda '+id+' i la data d’entrega actualitzada?\n\nGràcies,\n'+C.contact+'\n'+C.name+' (demo)'}})}
- closeDr();go('aprovacions');setTimeout(()=>openAp(newId),80)}
-
-/* ---------- PRODUCCIÓ (Galán) ---------- */
-function vProd(){let h=`<div class="heading"><h1>Producció i compres</h1><div class="sub">Cada ordre de fabricació amb el material que li falta i quan arriba. Si una compra es mou, es veu l'efecte aquí i la resposta passa per aprovació.</div></div>`;
- C.of.forEach(f=>{const pct=f.ready;const haves=f.lines.filter(l=>l.st==='Rebut').length;
-  h+=`<div class="card ofcard" style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><div><h3 style="margin:0 0 2px;font-size:15px">${f.id} · ${esc(f.machine)}</h3><div class="small mut">${esc(f.sector)} · inici previst ${esc(f.start)} · lliurament ${esc(f.due)}</div></div>${f.risk?'<span class="tag t-red">En risc</span>':'<span class="tag t-grn">En marxa</span>'}</div><div style="display:flex;align-items:center;gap:10px;margin:12px 0 4px"><div class="bar ${f.risk?'risk':''}" style="flex:1"><i style="width:${pct}%"></i></div><span class="small mut">${pct}% material rebut</span></div><ul>${f.lines.map(l=>`<li class="small"><span class="tag ${l.st==='Rebut'?'t-grn':l.st==='Risc'?'t-red':'t-amb'}">${l.st}</span> ${esc(l.need)} <span class="mut">· ${esc(l.info)}</span></li>`).join('')}</ul>`;
-  if(f.ap){const a=C.aps.find(x=>x.id===f.ap);if(a&&!D[a.id])h+=`<div class="act"><button class="btn" onclick="go('aprovacions');setTimeout(()=>openAp('${a.id}'),60)">Revisar la proposta de sincronització</button></div>`;else if(a&&D[a.id])h+=`<div class="small dec">${D[a.id].action==='aprovada'?'Sincronització aprovada':'Proposta rebutjada'} · ${D[a.id].ts}</div>`}
-  h+=`</div>`});
- h+=`<div class="card"><h2>Com s'actualitza</h2><p class="small mut" style="margin:0">Les recepcions i les dates confirmades de compres alimenten aquesta vista. Cap canvi de planning s'aplica sol: la proposta arriba a Aprovacions i la persona de compres o de producció decideix.</p></div>`;
- $('#view').innerHTML=h}
-
-/* ---------- MÉS ---------- */
-function vMes(){const t=state.tab;let h=`<div class="heading"><h1>Més</h1></div><div class="tabs">${[['prov','Proveïdors'],['ctx','Context públic'],['real','Què és real']].map(([k,tt])=>`<button class="${t===k?'on':''}" onclick="state.tab='${k}';render()">${tt}</button>`).join('')}</div><div id="mb"></div>`;
- $('#view').innerHTML=h;const mb=$('#mb');
- if(t==='prov'){mb.innerHTML=`<div class="card tw"><table><thead><tr><th>Proveïdor</th><th>Àrea</th><th>Contacte</th><th class="hide-m">Termini hab. (dies)</th></tr></thead><tbody>${Object.values(C.sups).map(s=>`<tr><td>${esc(s.n)}</td><td>${esc(s.cat)}</td><td>${esc(s.c)}</td><td class="hide-m">${s.lt}</td></tr>`).join('')}</tbody></table><p class="small mut">Noms i terminis ficticis per a la demo.</p></div>`}
- else if(t==='ctx'){mb.innerHTML=`<div class="grid two"><div class="card"><h2>${esc(C.ctx.whoT)}</h2>${C.ctx.who.map(p=>`<p class="small" style="margin:8px 0">${p}</p>`).join('')}<h3 style="margin-top:14px">Què diuen les ressenyes</h3>${C.ctx.reviews.map(p=>`<p class="small" style="margin:8px 0">${p}</p>`).join('')}</div><div class="card"><h2>Per què aquesta demo</h2>${C.ctx.fit.map(p=>`<p class="small" style="margin:8px 0">${p}</p>`).join('')}<h3 style="margin-top:14px">Fonts públiques</h3><ul class="src-list small">${C.ctx.sources.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join('')}</ul><p class="small mut">Demo independent, no és un producte oficial de ${C.name}. Logotip públic usat només per a aquesta presentació.</p></div></div>`}
- else{mb.innerHTML=`<div class="card"><h2>Què és real i què és simulat</h2><ul><li><b>Real:</b> interfície, navegació, filtres i registre de decisions al navegador.</li><li><b>Simulat:</b> classificació de correus, esborranys, recepcions, ERP i qualsevol enviament.</li><li><b>Desconnectat:</b> correu, ERP, documents, IA i pagaments.</li><li>Tots els proveïdors, contactes operatius, comandes, ordres de fabricació i xifres són ficticis.</li><li>Cap xifra de la demo és una dada real de ${C.name} ni una promesa d'estalvi.</li></ul><p class="small">El flux és manual per disseny: el sistema classifica, vincula i prepara; la persona aprova, edita o rebutja cada acció. L'automatització total no és l'objectiu d'aquesta proposta.</p><div class="act"><button class="btn ghost" onclick="resetAll()">Reinicia la demo</button></div></div>`}}
-function resetAll(){D={};saveD();toast('Demo reiniciada');go('avui')}
-
-function closeDr(){$('#dr').classList.remove('on')}
-function render(){nav();$('#tl').src=C.logo;({avui:vAvui,aprovacions:vApprov,comandes:vOrders,produccio:vProd,mes:vMes}[state.route]||vAvui)()}
-$('#dr').addEventListener('click',e=>{if(e.target.id==='dr')closeDr()});
-/* Operational workbench, own implementation based on purchasing software patterns. */
-let queueMode='pending',queueQ='',selectedAp=null,selectedOf=null;
-try{const custom=JSON.parse(localStorage.getItem(LS+'-custom')||'[]');custom.forEach(a=>{if(!C.aps.some(x=>x.id===a.id))C.aps.push(a)})}catch(e){}
-function draftGet(id){try{return JSON.parse(localStorage.getItem(LS+'-draft-'+id)||'null')}catch(e){return null}}
-function activeReview(){return $('#dr').classList.contains('on')?$('#pn'):$('#review-detail')}
-function draftSave(id){const el=activeReview()?.querySelector('#draftbody');if(el)try{localStorage.setItem(LS+'-draft-'+id,JSON.stringify(el.value))}catch(e){}}
-function navHTML(a){const icons={avui:'inbox',produccio:'factory',aprovacions:'check',comandes:'list',mes:'more'};return a.map(([k,t])=>`<a role="button" tabindex="0" class="${state.route===k?'on':''}" onclick="go('${k}')" onkeydown="if(event.key==='Enter')go('${k}')"><span class="navicon">${icon(icons[k])}</span>${k==='avui'?'Per revisar':k==='aprovacions'?'Decisions':t}${k==='avui'?`<span class="n">${C.aps.filter(x=>!D[x.id]).length}</span>`:''}</a>`).join('')}
-function icon(k){const paths={inbox:'M3 4h18v15H3z M3 12h5l2 3h4l2-3h5',factory:'M3 21V9l6 4V9l6 4V3h4v18z M7 17h1m3 0h1m3 0h1',check:'M8 4h12v17H4V4h4 M8 3h8v4H8z M8 14l3 3 5-6',list:'M8 6h13M8 12h13M8 18h13M3 6h1M3 12h1M3 18h1',more:'M4 6h16M4 12h16M4 18h16'};return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[k]||paths.list}"/></svg>`}
-function nav(){ $('#side').innerHTML=`<div class="brand"><img src="${C.logo}" alt="${C.name}"><small>ESPAI DE COMPRES</small></div><div class="nav-section">OPERACIONS</div>${navHTML(C.nav)}<div class="side-foot"><div class="identity"><span class="avatar">${esc(C.contact[0])}</span><div>${esc(C.contact)}<br><span class="mut">Entorn de demostració</span></div></div><div class="independent"><b>AUTOMIO</b><br>Partner d’intel·ligència artificial<br><br>Demo independent · Dades fictícies<br>No connectada al correu ni a l'ERP</div></div>`;$('#mob').innerHTML=navHTML(C.nav);}
-function queueRows(){return C.aps.filter(a=>(queueMode==='done'?!!D[a.id]:!D[a.id])&&(queueMode!=='urgent'||a.urg)&&(!queueQ||(a.title+' '+a.order+' '+a.type+' '+(ord(a.order)?sup(ord(a.order).s).n:'')).toLowerCase().includes(queueQ.toLowerCase())))}
-function queueFilter(mode){queueMode=mode;selectedAp=null;vAvui()}
-function vAvui(){const pend=C.aps.filter(a=>!D[a.id]),urgent=pend.filter(a=>a.urg);let rows=queueRows();if(!rows.some(a=>a.id===selectedAp))selectedAp=rows[0]?.id;
- $('#view').innerHTML=`<div class="heading headrow"><div><div class="eyebrow">COMPRES / EXCEPCIONS</div><h1>Per revisar</h1><div class="sub">${C.key==='galan'?'Materials i dates que afecten la fabricació.':C.key==='cytecma'?'Components crítics i documentació pendent.':'Compres i canvis pendents per projecte.'}</div></div><span class="snapshot">Escenari · ${fmtD(C.today)}</span></div><div class="queue-tabs"><button class="${queueMode==='pending'?'on':''}" onclick="queueFilter('pending')">Pendents <b>${pend.length}</b></button><button class="${queueMode==='urgent'?'on':''}" onclick="queueFilter('urgent')">Prioritaris <b>${urgent.length}</b></button><button class="${queueMode==='done'?'on':''}" onclick="queueFilter('done')">Resolts <b>${C.aps.length-pend.length}</b></button><span class="queue-note">Aprovació manual · Sense enviaments</span></div><div class="workbench"><section class="queue"><div class="queue-search"><input type="search" aria-label="Cerca incidències" placeholder="Cerca comanda o proveïdor…" value="${esc(queueQ)}" oninput="queueQ=this.value;refreshQueue()"></div><div id="queue-list"></div></section><section class="detail" id="review-detail"></section></div>`;
- refreshQueue(false);if(selectedAp&&!matchMedia('(max-width:900px)').matches)selectAp(selectedAp);else $('#review-detail').innerHTML='<div class="blank"><h2>Cap incidència en aquesta vista</h2><p>Canvia el filtre per veure la resta de propostes.</p></div>';
-}
-function refreshQueue(auto=true){const rows=queueRows();$('#queue-list').innerHTML=rows.map(a=>{const o=ord(a.order);return `<button class="queue-row ${selectedAp===a.id?'selected':''}" onclick="selectAp('${a.id}')"><div class="queue-meta"><span>${esc(a.order)}</span><span class="priority ${a.urg?'urgent':''}">${D[a.id]?'Resolta':a.urg?'Prioritari':esc(a.type)}</span></div><strong>${esc(a.title)}</strong><div class="queue-supplier">${o?esc(sup(o.s).n):'Coordinació interna'}</div><div class="queue-brief">${esc(a.brief)}</div><div class="queue-bottom">${o?.proj?esc(o.proj):a.of?esc(a.of):esc(a.type)}<span>Revisar →</span></div></button>`}).join('')||'<div class="empty">Cap coincidència.</div>';if(auto&&rows.length&&!rows.some(a=>a.id===selectedAp))selectAp(rows[0].id)}
-function selectAp(id){selectedAp=id;openAp(id);if(matchMedia('(max-width:900px)').matches){refreshQueue(false);return}const html=$('#pn').innerHTML;closeDr();$('#pn').innerHTML='';$('#review-detail').innerHTML=`<div class="detail-toolbar"><span>FITXA DE REVISIÓ</span><span>Comanda → Proposta → Decisió</span></div><div class="detail-body">${html}</div>`;$('#review-detail .x')?.remove();refreshQueue(false)}
-const oldOpenAp=openAp;
-openAp=function(id){oldOpenAp(id);const a=C.aps.find(x=>x.id===id),d=D[id],tb=$('#pn #draftbody');$('#pn .x')?.setAttribute('aria-label','Tanca la fitxa');
- if(tb){tb.setAttribute('aria-label','Cos del correu');tb.value=d?.body??draftGet(id)??a.draft.body;tb.textContent=tb.value;tb.setAttribute('oninput',`draftSave('${id}')`)}
- $('#pn').querySelectorAll('.act button').forEach(b=>{if(b.textContent.includes('Aprova amb'))b.remove();else if(b.textContent.startsWith('Aprova'))b.textContent='Aprova la proposta'});
- if(a.opts&&!d){$('#pn').querySelectorAll('input[name=opt]').forEach(r=>{r.checked=false;r.removeAttribute('checked');r.setAttribute('onchange',`chooseOption('${id}',this.value)`)});}
- if(d){if(tb)tb.readOnly=true;$('#pn').querySelectorAll('input[name=opt]').forEach(r=>{r.checked=Number(r.value)===d.option;if(r.checked)r.setAttribute('checked','');else r.removeAttribute('checked');r.disabled=true});$('#pn').insertAdjacentHTML('beforeend',`<div class="decision-receipt"><b>Decisió registrada en aquest navegador</b><div>${esc(d.note||'Sense observacions')}</div><div class="small mut">Simulació. Cap correu enviat ni canvi aplicat a l'ERP.</div></div>`)}
+//META lang=es|title=Automio OS · CYTECMA — Compras de proyecto (demo)|acc=#C8102E|accbg=#fdecea|accink=#a30f24|navy=#172c65
+// Demo CYTECMA — castellano. Datos ficticios marcados como ejemplo. Materiales/estándares reales del sector (acero S690, EN 10204 3.1).
+const CFG = {
+  slug:'cytecma', v:6, company:'CYTECMA', mark:'CY', userIni:'AL', locale:'es-ES', home:'panel',
+  t:{
+    pill:'DATOS DE EJEMPLO — DEMO SIN CONEXIÓN REAL',
+    foot:'Demo de Automio para CYTECMA.<br>Todos los datos son ficticios y las acciones solo se simulan en este navegador. Nada se envía ni se escribe en ningún sistema.',
+    empty:'Sin registros', records:'registros', mailto:'Para', mailsubj:'Asunto'
+  },
+  modules:[
+    {sec:'General'},
+    {id:'panel', label:'Panel', icon:'panel'},
+    {id:'inbox', label:'Aprobaciones', icon:'inbox', badge:s=>s.approvals.filter(a=>a.estado==='pendiente').length||''},
+    {sec:'Operativa'},
+    {id:'proj', label:'Proyectos', icon:'proj'},
+    {id:'compras', label:'Compras', icon:'compras', badge:s=>s.orders.filter(o=>['retrasado','parcial'].includes(o.estado)).length||''},
+    {id:'cert', label:'Certificados 3.1', icon:'cert', badge:s=>s.certs.filter(c=>c.estado!=='recibido').length||''},
+    {id:'prov', label:'Proveedores', icon:'prov'},
+    {sec:'Sistema'},
+    {id:'act', label:'Actividad', icon:'act'}
+  ],
+  initial:{
+    approvals:[
+      {id:'AP-101', pri:'alta', tipo:'Seguimiento', estado:'pendiente',
+        titulo:'Corona de giro Ø1.250 sin fecha confirmada · GM-120',
+        detalle:'El pedido PC-2308 (corona de giro Ø1.250 mm, tratada) lleva 6 días sin confirmación de fecha. La grúa marina GM-120 tiene las pruebas de carga previstas el 12/12.',
+        why:'Sin corona no hay montaje del giro; cada semana de retraso mueve las pruebas y la entrega al astillero.',
+        accion:{kind:'mail', to:'comercial@proveedor-ejemplo.es', subj:'PC-2308 · Confirmación de fecha de entrega — corona de giro Ø1.250', body:'Buenos días,<br><br>necesitamos confirmación firme de la fecha de entrega de la corona de giro Ø1.250 mm (pedido PC-2308). Las pruebas de carga de la GM-120 están previstas el 12/12 y cualquier desplazamiento afecta a la entrega.<br><br>Gracias, un saludo.'}},
+      {id:'AP-102', pri:'alta', tipo:'Certificado', estado:'pendiente',
+        titulo:'Certificado 3.1 (EN 10204) pendiente · acero S690 chapas 40 mm',
+        detalle:'La recepción de las chapas de S690 del PC-2301 está bloqueada en calidad hasta recibir el certificado 3.1 de la colada H-7742.',
+        why:'Sin el 3.1 no se puede liberar el material a producción; el cliente final exige trazabilidad completa.',
+        accion:{kind:'mail', to:'calidad@proveedor-ejemplo.es', subj:'PC-2301 · Certificado 3.1 colada H-7742 (EN 10204)', body:'Buenos días,<br><br>nos falta el certificado 3.1 según EN 10204 de la colada H-7742 (chapas S690, 40 mm) del pedido PC-2301. Sin él no podemos liberar el material.<br><br>Gracias.'}},
+      {id:'AP-103', pri:'media', tipo:'Cambio de fecha', estado:'pendiente',
+        titulo:'Grupo hidráulico 90 kW retrasa 2 semanas · GC-450',
+        detalle:'El proveedor comunica retraso del grupo hidráulico (PC-2312): nueva fecha 09/01 en vez del 26/12. Afecta al montaje y a las pruebas de la grúa sobre camión GC-450.',
+        why:'El montaje hidráulico es camino crítico; conviene decidir ya si se replanifican las pruebas o se busca alternativa.',
+        accion:{kind:'replan', proyecto:'GC-450', delta:'+2 semanas en pruebas'}}
+    ],
+    orders:[
+      {id:'PC-2301', prov:'Aceros Altares S.A. (ejemplo)', proyecto:'GM-120', estado:'bloqueado', total:18450, entrega:'recibido 14/11', lineas:[
+        {desc:'Chapa acero S690, 40 mm (6 uds)', qty:6, precio:2410, estado:'recibido', cert:'pendiente'},
+        {desc:'Chapa acero S690, 25 mm (4 uds)', qty:4, precio:1005, estado:'recibido', cert:'recibido'}]},
+      {id:'PC-2308', prov:'Mecanizados Rotor S.L. (ejemplo)', proyecto:'GM-120', estado:'sin-confirmar', total:6900, entrega:'sin fecha', lineas:[
+        {desc:'Corona de giro Ø1.250 mm, tratada', qty:1, precio:6900, estado:'en-fabricacion', cert:'no-aplica'}]},
+      {id:'PC-2312', prov:'Hidráulica Delta S.A. (ejemplo)', proyecto:'GC-450', estado:'retrasado', total:21300, entrega:'09/01 (antes 26/12)', lineas:[
+        {desc:'Grupo hidráulico 90 kW, doble efecto', qty:1, precio:19800, estado:'retrasado', cert:'no-aplica'},
+        {desc:'Racorería y tubo rígido inox (lote)', qty:1, precio:1500, estado:'recibido', cert:'no-aplica'}]},
+      {id:'PC-2315', prov:'Bronces y Cierres S.A. (ejemplo)', proyecto:'GM-120', estado:'enviado', total:3240, entrega:'previsto 02/12', lineas:[
+        {desc:'Pistones y tuercas de bronce (juego)', qty:2, precio:1620, estado:'en-fabricacion', cert:'no-aplica'}]},
+      {id:'PC-2319', prov:'Aceros Altares S.A. (ejemplo)', proyecto:'GE-60', estado:'confirmado', total:9120, entrega:'previsto 28/11', lineas:[
+        {desc:'Chapa acero S690, 30 mm (5 uds)', qty:5, precio:1824, estado:'confirmado', cert:'pendiente'}]},
+      {id:'PC-2320', prov:'Hidráulica Delta S.A. (ejemplo)', proyecto:'BR-25', estado:'parcial', total:4760, entrega:'parcial 18/11', lineas:[
+        {desc:'Cilindros doble efecto cromo duro (4 uds)', qty:4, precio:940, estado:'recibido', cert:'recibido'},
+        {desc:'Válvulas de seguridad (4 uds)', qty:4, precio:250, estado:'pendiente', cert:'no-aplica'}]}
+    ],
+    projects:[
+      {id:'GM-120', nombre:'Grúa marina 12 t · brazo telescópico', cliente:'Astillero (exportación) — ejemplo', fase:2, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:58, pruebas:'12/12', riesgo:'alto',
+        materiales:[{desc:'Corona de giro Ø1.250', estado:'sin-fecha'},{desc:'Chapas S690 40 mm', estado:'bloqueado-calidad'},{desc:'Pistones bronce', estado:'en-fecha'}]},
+      {id:'GC-450', nombre:'Grúa sobre camión 45 t', cliente:'Operador logístico — ejemplo', fase:1, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:34, pruebas:'22/01', riesgo:'medio',
+        materiales:[{desc:'Grupo hidráulico 90 kW', estado:'retrasado'},{desc:'Racorería inox', estado:'recibido'}]},
+      {id:'GE-60', nombre:'Grúa estática 6 t · gestión de residuos', cliente:'Planta de clasificación — ejemplo', fase:1, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:21, pruebas:'05/02', riesgo:'bajo',
+        materiales:[{desc:'Chapas S690 30 mm', estado:'en-fecha'}]},
+      {id:'BR-25', nombre:'Brazo robotizado para almacén', cliente:'Centro logístico — ejemplo', fase:2, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:66, pruebas:'18/12', riesgo:'bajo',
+        materiales:[{desc:'Cilindros cromo duro', estado:'recibido'},{desc:'Válvulas de seguridad', estado:'pendiente'}]}
+    ],
+    certs:[
+      {id:'CT-88', componente:'Chapa S690 40 mm', pedido:'PC-2301', colada:'H-7742', estado:'pendiente', doc:'—'},
+      {id:'CT-84', componente:'Chapa S690 25 mm', pedido:'PC-2301', colada:'H-7718', estado:'recibido', doc:'cert-3.1-H-7718.pdf (ejemplo)'},
+      {id:'CT-91', componente:'Chapa S690 30 mm', pedido:'PC-2319', colada:'H-7803', estado:'pendiente', doc:'—'},
+      {id:'CT-79', componente:'Cilindros cromo duro', pedido:'PC-2320', colada:'—', estado:'recibido', doc:'declaracion-conformidad.pdf (ejemplo)'}
+    ],
+    suppliers:[
+      {id:'PR-01', nombre:'Aceros Altares S.A. (ejemplo)', cat:'Aceros de alta resistencia', otif:86, calidad:92, pedidos:14, ultimo:'PC-2319', nota:'Certificados 3.1 a veces tardíos.'},
+      {id:'PR-02', nombre:'Mecanizados Rotor S.L. (ejemplo)', cat:'Coronas de giro y mecanizado grande', otif:74, calidad:95, pedidos:6, ultimo:'PC-2308', nota:'Plazos largos; confirmar fecha al emitir pedido.'},
+      {id:'PR-03', nombre:'Hidráulica Delta S.A. (ejemplo)', cat:'Grupos hidráulicos y componentes', otif:81, calidad:88, pedidos:11, ultimo:'PC-2320', nota:'Último trimestre con dos retrasos.'},
+      {id:'PR-04', nombre:'Bronces y Cierres S.A. (ejemplo)', cat:'Bronces y tornillería inox', otif:95, calidad:97, pedidos:9, ultimo:'PC-2315', nota:'Fiable.'}
+    ],
+    activity:[{ts:new Date().toISOString(), text:'Demo iniciada con datos de ejemplo.'}]
+  },
+  views:{}
 };
-function chooseOption(id,i){const a=C.aps.find(x=>x.id===id),tb=activeReview()?.querySelector('#draftbody');if(tb&&a.draft){tb.value=`Bon dia,\n\nEn relació amb la comanda ${a.order}, hem revisat la proposta.\n\nDecisió: ${a.opts[Number(i)].t}.\n${a.opts[Number(i)].d}\n\nEns ho podeu confirmar per escrit?\n\nGràcies,\n${C.contact}\n${C.name} (demo)`;draftSave(id)}}
-decideAp=function(id,action){const a=C.aps.find(x=>x.id===id);const scope=activeReview();const opt=scope?.querySelector('input[name=opt]:checked');if(action==='aprovada'&&a.opts&&!opt){toast('Tria una de les opcions abans d’aprovar.');return}let note=scope?.querySelector('#rejnote')?.value||'';if(opt&&a.opts)note=(note?note+' · ':'')+'Opció: '+a.opts[Number(opt.value)].t;const body=scope?.querySelector('#draftbody')?.value||'';draftSave(id);D[id]={action,body,option:opt?Number(opt.value):null,note,ts:new Date().toLocaleString('ca-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})};saveD();closeDr();toast(action==='aprovada'?'Aprovació registrada. No s’ha enviat res.':'Rebuig registrat.');render()};
-const oldFollow=mkFollow;mkFollow=function(id){oldFollow(id);try{localStorage.setItem(LS+'-custom',JSON.stringify(C.aps.filter(a=>a.id.startsWith('ap-x-'))))}catch(e){}};
-vApprov=function(){const done=C.aps.filter(a=>D[a.id]);$('#view').innerHTML=`<div class="heading"><div class="eyebrow">COMPRES / HISTORIAL</div><h1>Decisions</h1><div class="sub">Registre local de les aprovacions i els rebutjos d'aquesta demo.</div></div><div class="card tw"><table><thead><tr><th>Comanda</th><th>Proposta</th><th>Decisió</th><th>Moment</th><th></th></tr></thead><tbody>${done.map(a=>`<tr><td>${a.order}</td><td>${esc(a.title)}</td><td><span class="tag ${D[a.id].action==='aprovada'?'t-grn':'t-red'}">${D[a.id].action==='aprovada'?'Aprovada':'Rebutjada'}</span></td><td>${D[a.id].ts}</td><td><button class="btn ghost" onclick="openAp('${a.id}')">Veure</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Encara no hi ha decisions registrades. Revisa una proposta per començar.</td></tr>'}</tbody></table></div><div class="act"><button class="btn" onclick="go('avui')">Revisar pendents</button></div>`};
-vProd=function(){if(!selectedOf)selectedOf=C.of.find(f=>f.risk)?.id||C.of[0].id;const f=C.of.find(x=>x.id===selectedOf);$('#view').innerHTML=`<div class="heading"><div class="eyebrow">FABRICACIÓ / DISPONIBILITAT DE MATERIAL</div><h1>Producció i compres</h1><div class="sub">Ordres de fabricació, materials pendents i decisions compartides.</div></div><div class="card tw"><table class="production-table"><thead><tr><th>Ordre / màquina</th><th>Inici previst</th><th>Lliurament</th><th>Material rebut</th><th>Estat</th></tr></thead><tbody>${C.of.map(o=>`<tr class="row ${o.id===selectedOf?'active-row':''}" onclick="selectedOf='${o.id}';vProd()"><td><b>${o.id}</b><div class="mut small">${esc(o.machine)}</div></td><td>${esc(o.start)}</td><td>${esc(o.due)}</td><td>${o.lines.filter(l=>l.st==='Rebut').length} / ${o.lines.length} necessitats</td><td><span class="tag ${o.risk?'t-red':'t-grn'}">${o.risk?'Material pendent':'En termini'}</span></td></tr>`).join('')}</tbody></table></div><div class="material-detail card"><div class="headrow"><div><div class="eyebrow">MATERIALS DE ${f.id}</div><h2>${esc(f.machine)}</h2></div><span class="small mut">${esc(f.sector)}</span></div>${f.lines.map(l=>`<div class="material-row"><span class="tag ${l.st==='Rebut'?'t-grn':l.st==='Risc'?'t-red':'t-amb'}">${esc(l.st)}</span><div><b>${esc(l.need)}</b><div class="mut">${esc(l.info)}</div></div></div>`).join('')}${f.ap?`<div class="act"><button class="btn" onclick="openAp('${f.ap}')">${D[f.ap]?'Veure la decisió':'Revisar opcions amb compres'}</button></div>`:''}<p class="small mut">No es replanifica cap ordre ni s'actualitza l'ERP. Els canvis es revisen i s'aproven manualment.</p></div>`};
-const oldOrders=vOrders;vOrders=function(){oldOrders();$('#view .sub').textContent='Comandes, dates confirmades i recepcions parcials.'};
-const oldOB=vOrdersBody;vOrdersBody=function(){oldOB();document.querySelectorAll('#chips .chip').forEach((b,i)=>b.classList.toggle('on',['all','late','part','noc'][i]===state.chip))};
-const oldReset=resetAll;resetAll=function(){for(const a of C.aps)localStorage.removeItem(LS+'-draft-'+a.id);localStorage.removeItem(LS+'-custom');C.aps=C.aps.filter(a=>!a.id.startsWith('ap-x-'));queueMode='pending';selectedAp=null;oldReset()};
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDr()});
 
-const prevMes=vMes;vMes=function(){prevMes();if(state.tab==='real')$('#mb').insertAdjacentHTML('beforeend',`<p class="small mut" style="margin-top:18px">Referències de producte: <a href="https://www.cybrosys.com/odoo/odoo-books/v19/purchase/orders-menu/" target="_blank" rel="noopener">Odoo Purchase</a> · <a href="https://support.sourceday.com/hc/en-us/articles/5031289206292-Managing-POs-from-the-dashboard-accept-update-respond" target="_blank" rel="noopener">SourceDay PO Collaboration</a>. Estructura de llistes, detall i revisió de canvis; implementació pròpia, sense afiliació.</p>`)};
+// ---------- helpers ----------
+const EST_O = {borrador:['t-gry','Borrador'],enviado:['t-blu','Enviado'],confirmado:['t-blu','Confirmado'],'sin-confirmar':['t-amb','Sin confirmar'],retrasado:['t-red','Retrasado'],parcial:['t-amb','Recepción parcial'],recibido:['t-grn','Recibido'],bloqueado:['t-red','Bloqueado en calidad']};
+const EST_L = {'pendiente':['t-gry','Pendiente'],'en-fabricacion':['t-blu','En fabricación'],'confirmado':['t-blu','Confirmado'],'recibido':['t-grn','Recibido'],'retrasado':['t-red','Retrasado']};
+const EST_M = {'sin-fecha':['t-red','Sin fecha'],'bloqueado-calidad':['t-red','Bloqueado (calidad)'],'retrasado':['t-red','Retrasado'],'pendiente':['t-amb','Pendiente'],'en-fecha':['t-grn','En fecha'],'recibido':['t-grn','Recibido']};
+const tag = (m,k)=> m[k]?`<span class="tag ${m[k][0]}">${m[k][1]}</span>`:'';
 
-rejectAsk=function(id){const p=activeReview();if(p.querySelector('#rejbox'))return;p.insertAdjacentHTML('beforeend',`<div id="rejbox" style="margin-top:16px"><h3>Motiu del rebuig</h3><input id="rejnote" aria-label="Motiu del rebuig" style="width:100%" placeholder="Opcional"><div class="act"><button class="btn" onclick="decideAp('${id}','rebutjada')">Confirma el rebuig</button></div></div>`);p.querySelector('#rejbox').scrollIntoView({behavior:'smooth'})};
+// ---------- Panel ----------
+CFG.views.panel = c => {
+  const abiertos = S.orders.filter(o=>!['recibido'].includes(o.estado));
+  const riesgo = S.orders.filter(o=>['retrasado','bloqueado','sin-confirmar'].includes(o.estado)).length;
+  const pend = S.approvals.filter(a=>a.estado==='pendiente');
+  const gasto = S.orders.reduce((t,o)=>t+o.total,0);
+  c.innerHTML = `
+  <div class="row-head"><div><h1>Panel de compras de proyecto</h1><div class="sub">Cada grúa es un proyecto único: pocas líneas de compra, pero todas críticas y con plazos largos.</div></div><div class="sp"></div><button class="btn ghost" onclick="resetDemo()">Reiniciar demo</button></div>
+  <div class="banner"><b>Demo con datos de ejemplo.</b>&nbsp;Los proyectos, pedidos y proveedores son ficticios. Los materiales y estándares (acero S690, certificados 3.1 EN 10204) reflejan el sector real de CYTECMA. Ninguna acción sale de este navegador.</div>
+  <div class="grid k4">
+    <div class="card kpi"><b>${S.projects.length}</b><span>proyectos en curso</span><div class="d mut">${S.projects.filter(p=>p.riesgo==='alto').length} con riesgo alto</div></div>
+    <div class="card kpi"><b>${abiertos.length}</b><span>pedidos abiertos</span><div class="d mut">${fmtE(gasto)} comprometidos (ejemplo)</div></div>
+    <div class="card kpi ${riesgo?'bad':''}"><b>${riesgo}</b><span>pedidos con incidencia</span><div class="d mut">retraso, bloqueo o sin confirmar</div></div>
+    <div class="card kpi ${pend.length?'warn':'ok'}"><b>${pend.length}</b><span>aprobaciones pendientes</span><div class="d mut">nada se ejecuta sin aprobación</div></div>
+  </div>
+  <div class="grid two">
+    <div class="card"><h3>Decisiones pendientes</h3>${pend.length?pend.map(a=>qitemHTML(a)).join(''):'<div class="note">Sin decisiones pendientes. Todo aprobado al día.</div>'}</div>
+    <div class="card"><h3>Próximas pruebas de carga</h3>${S.projects.map(p=>`
+      <div class="matrow"><span class="dot ${p.riesgo==='alto'?'d-red':p.riesgo==='medio'?'d-amb':'d-grn'}"></span><div style="flex:1"><b>${p.id}</b> · ${esc(p.nombre)}<div class="mut small">${esc(p.cliente)}</div></div><div style="text-align:right"><div class="b">${p.pruebas}</div><div class="mut small">pruebas</div></div></div>`).join('')}
+      <div class="note" style="margin-top:12px">Un cambio de fecha en compras mueve estas pruebas: el sistema lo detecta y propone la decisión, nunca la aplica solo.</div></div>
+  </div>`;
+  c.querySelectorAll('.qitem').forEach((q,i)=>q.addEventListener('click',()=>openApproval(pend[i].id)));
+};
 
-// A single connected, fictional receiving case. No service integrations.
-let flowStep=1;const FLOWKEY=LS+'-expedient';let F;
-try{F=Object.assign({quantity:0,received:false,doc:false,review:false,note:'',draft:'',events:[],prepared:false},JSON.parse(localStorage.getItem(FLOWKEY)||'{}'))}catch(e){F={quantity:0,received:false,doc:false,review:false,note:'',draft:'',events:[],prepared:false}}
-const fsave=()=>localStorage.setItem(FLOWKEY,JSON.stringify(F));
-const ftrace=t=>{F.events.push({text:t,time:new Date().toLocaleTimeString('ca-ES',{hour:'2-digit',minute:'2-digit'})});fsave()};
-C.nav.splice(1,0,['expedient','Una entrega, pas a pas']);
-const baseRender=render;render=function(){if(state.route==='expedient'){nav();$('#tl').src=C.logo;vCase()}else baseRender()};
-function caseMove(n){flowStep=n;vCase()}
-function vCase(){const steps=['Origen i necessitat','Recepció física','Revisió documental','Consulta i traça'];$('#view').innerHTML=`<div class="heading"><div class="eyebrow">COMPRES / UN CAS COMPLET</div><h1>Una entrega, pas a pas</h1><div class="sub">CY-26-015 · xapes per a un projecte marí fictici. Separen quantitat, documents i conformitat.</div></div><div class="flowstep">${steps.map((t,i)=>`<button class="${flowStep===i+1?'on':''}" onclick="caseMove(${i+1})">0${i+1} · ${t}<small>${i===0?'Documents de mostra':i===1?(F.received?'Recepció registrada':'Pendent de comprovació'):i===2?(F.review?'Revisió guardada':'Sense alliberament'):(F.prepared?'Consulta preparada':'Cap correu enviat')}</small></button>`).join('')}</div><div class="flowmetrics"><div class="flowmetric"><b>34</b><span>unitats demanades · exemple</span></div><div class="flowmetric"><b>${F.quantity}</b><span>unitats físiques registrades</span></div><div class="flowmetric"><b>${F.review?'Revisat':'Pendent'}</b><span>estat documental, no qualitat</span></div></div><div class="flowgrid"><section class="card">${flowStep===1?`<h2>Què sabem abans d'actuar?</h2><div class="proofdoc"><b>PO-DEMO-015 · Comanda de mostra</b><br>24 unitats S690-12 + 10 unitats S690-25.<br>Data prevista de mostra: 20/11/2026.<br>Requisit fictici de la comanda: document 3.1 amb referència al lot.</div><div class="proofdoc" style="margin-top:12px"><b>AV-DEMO-015 · Avís del proveïdor</b><br>Proposa una entrega parcial de 24 unitats S690-12. Les altres 10 continuen pendents.<br>Lot indicat a l'avís: LT-DEMO-015. Document encara no adjuntat.</div><p class="smallnote">Fonts creades expressament per a la demo. No són documents de CYTECMA ni acrediten material, propietats, normes o conformitat.</p><button class="btn" onclick="caseMove(2)">Comprovar la recepció</button>`:flowStep===2?`<h2>Què ha arribat físicament?</h2><p class="smallnote">Registrar un albarà no prova que el material sigui correcte ni autoritza a utilitzar-lo.</p><label class="fieldlabel" for="fqty">Unitats S690-12 comprovades (màxim 24)</label><input id="fqty" type="number" min="0" max="24" value="${F.quantity}"><div class="proofrow"><label><input id="fcount" type="checkbox"> He contrastat recompte i referència en aquest exemple.</label></div><label class="fieldlabel" for="fnote">Nota de recepció de mostra</label><input id="fnote" value="${esc(F.note)}" style="width:100%" placeholder="Ex.: 24 unitats, 10 pendents d'una altra línia"><div class="act"><button class="btn" onclick="saveReceipt()">Guardar recepció de mostra</button><button class="btn ghost" onclick="caseMove(3)">Revisar documents</button></div><div id="ferror" class="flowerror"></div>`:flowStep===3?`<h2>Hi ha document i s'ha revisat?</h2><div class="proofdoc"><b>DOC-DEMO-031 · Fitxa documental de mostra</b><br>Ordre: CY-26-015 · Lot esperat LT-DEMO-015.<br>És un marcador de document, no un certificat 3.1 vàlid.</div><div class="proofrow"><label><input type="checkbox" id="fdoc" ${F.doc?'checked':''}> Simular recepció del marcador documental.</label></div><div class="proofrow"><label><input type="checkbox" id="freview" ${F.review?'checked':''}> He contrastat ordre, referència i lot en els documents de mostra.</label></div><div class="act"><button class="btn" onclick="saveDocument()">Guardar revisió documental</button><button class="btn ghost" onclick="caseMove(4)">Preparar consulta</button></div><div id="ferror" class="flowerror"></div><p class="smallnote">La revisió documental no és una inspecció tècnica. No valida composició, resistència, soldabilitat, certificació ni cap qualitat del material. La conformitat correspon al responsable i al circuit real.</p>`:`<h2>Preparar, revisar i deixar traça</h2><p class="smallnote">La consulta es calcula amb l'estat del cas. Pots editar-la; no s'envia ni accepta dates o condicions.</p><button class="btn ghost" onclick="buildCaseDraft()">Preparar consulta des del cas</button><label class="fieldlabel" for="fbody">Esborrany editable · destinatari fictici</label><textarea id="fbody" class="draftta" oninput="F.draft=this.value;F.prepared=false;fsave()">${esc(F.draft)}</textarea><div class="proofrow"><label><input type="checkbox" id="fmanual"> He revisat les paraules de la consulta de mostra.</label></div><div class="act"><button class="btn" onclick="saveCaseDraft()">Guardar consulta revisada</button></div><div id="ferror" class="flowerror"></div>${F.prepared?'<div class="decision-receipt">Consulta guardada localment. Cap missatge enviat.</div>':''}`}</section><section class="card"><h2>Un únic expedient</h2><div class="proofrow"><b>Físic</b><br>${F.received?F.quantity+' unitats registrades de 34.':'Sense recepció registrada.'}</div><div class="proofrow"><b>Documents</b><br>${F.doc?'Marcador rebut.':'Marcador pendent.'} ${F.review?'Revisió de referència i lot guardada.':'Revisió pendent.'}</div><div class="proofrow"><b>Conformitat de qualitat</b><br>Sempre pendent del circuit real. La demo no allibera material.</div><div class="proofrow"><b>Proves i muntatge</b><br>Cal contrastar dates i material utilitzable. No es replanifica res.</div><h3 style="margin-top:20px">Traça acumulativa</h3>${F.events.map(x=>`<div class="traceitem"><b>${esc(x.time)}</b> · ${esc(x.text)}</div>`).join('')||'<p class="smallnote">Encara no has registrat accions en aquest cas.</p>'}<p class="smallnote">Les accions queden en aquest navegador. Cap correu, ERP, magatzem ni proveïdor connectat.</p></section></div>`}
-function saveReceipt(){let q=Number($('#fqty').value);if(!Number.isInteger(q)||q<1||q>24||!$('#fcount').checked){$('#ferror').textContent='Indica entre 1 i 24 unitats i confirma el recompte de mostra.';return}F.quantity=q;F.received=true;F.note=$('#fnote').value;F.prepared=false;F.draft='';ftrace('Recepció de mostra: '+q+' unitats S690-12. '+F.note);vCase()}
-function saveDocument(){if($('#freview').checked&&!$('#fdoc').checked){$('#ferror').textContent='No pots marcar revisat un document que encara no consta rebut.';return}F.doc=$('#fdoc').checked;F.review=$('#freview').checked;F.prepared=false;F.draft='';ftrace('Document: '+(F.doc?'marcador rebut':'pendent')+', revisió '+(F.review?'guardada':'pendent')+'. Sense conformitat ni alliberament.');vCase()}
-function buildCaseDraft(){F.draft=`Bon dia,\n\nSobre la comanda de mostra CY-26-015: ${F.received?'hem registrat físicament '+F.quantity+' unitats S690-12 de les 24 demanades':'encara no hem registrat la recepció física'}. Les 10 unitats S690-25 continuen pendents en aquest escenari.\n\n${F.doc?(F.review?'El marcador documental s’ha rebut i revisat contra la referència de mostra. La conformitat del material continua pendent.':'Consta el marcador documental, pendent de revisió del responsable.'):'Ens podeu fer arribar el document requerit amb la referència de lot de la comanda?'}\n\nEns confirmeu la situació de les unitats pendents i una proposta de data? No donem per acceptat cap canvi de termini o condicions.\n\nGràcies,\nEquip de compres · demo fictícia`;F.prepared=false;fsave();vCase()}
-function saveCaseDraft(){if(!$('#fbody').value.trim()||!$('#fmanual').checked){$('#ferror').textContent='Prepara la consulta i confirma que n’has revisat el text.';return}F.draft=$('#fbody').value;F.prepared=true;ftrace('Consulta revisada i guardada. Sense enviament.');vCase()}
-const resetBase=resetAll;resetAll=function(){localStorage.removeItem(FLOWKEY);F={quantity:0,received:false,doc:false,review:false,note:'',draft:'',events:[],prepared:false};flowStep=1;resetBase()};
-const prevVmes=vMes;vMes=function(){prevVmes();if(state.tab==='real')$('#mb').insertAdjacentHTML('beforeend',`<div class="card" style="margin-top:16px"><h2>Referències de disseny</h2><p class="smallnote">Estudi visual de taules i jerarquia d’estat. Disseny i codi propis; no es reutilitzen imatges ni components dels autors.</p><p class="smallnote"><a href="https://dribbble.com/shots/11182231-Purchase-Order-Table" target="_blank" rel="noopener">Purchase Order Table · Zunaid Aslam</a><br><a href="https://dribbble.com/shots/12875532-Suppliers-KPI-Dashboard-Work-in-Progress" target="_blank" rel="noopener">Suppliers KPI Dashboard · Himanshu Sharma</a></p></div>`)};
+function qitemHTML(a){
+  const dot = a.pri==='alta'?'d-red':a.pri==='media'?'d-amb':'d-gry';
+  return `<div class="qitem" data-id="${a.id}"><span class="dot ${dot}"></span><div class="b"><div class="t">${esc(a.titulo)}</div><div class="m">${esc(a.detalle)}</div></div><span class="tag t-gry">${esc(a.tipo)}</span></div>`;
+}
 
-const _pv=new URLSearchParams(location.search);
-if(_pv.get('v'))state.route=_pv.get('v');
-if(_pv.get('t'))state.tab=_pv.get('t');
-render();
-if(_pv.get('ap'))openAp(_pv.get('ap'));
-if(_pv.get('o'))openOrder(_pv.get('o'));
+// ---------- Inbox ----------
+CFG.views.inbox = c => {
+  const pend = S.approvals.filter(a=>a.estado==='pendiente');
+  const done = S.approvals.filter(a=>a.estado!=='pendiente');
+  c.innerHTML = `<div class="row-head"><div><h1>Aprobaciones</h1><div class="sub">El sistema prepara y propone; la persona aprueba, edita o rechaza. Nada se envía ni se aplica solo.</div></div></div>
+  <h2 style="margin:6px 0 12px">Pendientes (${pend.length})</h2>
+  ${pend.length?pend.map(qitemHTML).join(''):'<div class="note">Sin decisiones pendientes.</div>'}
+  ${done.length?`<h2 style="margin:22px 0 12px">Resueltas (${done.length})</h2>`+done.map(a=>`<div class="qitem" data-id="${a.id}"><span class="dot d-grn"></span><div class="b"><div class="t">${esc(a.titulo)}</div><div class="m">${esc(a.estado)} · ${esc(a.resolucion||'')}</div></div></div>`).join(''):''}`;
+  c.querySelectorAll('.qitem').forEach(q=>q.addEventListener('click',()=>openApproval(q.dataset.id)));
+};
+
+function openApproval(id){
+  const a = S.approvals.find(x=>x.id===id); if(!a) return;
+  const body = a.estado==='pendiente' ? `
+    <div class="why"><b>Por qué importa:</b> ${esc(a.why)}</div>
+    ${a.accion.kind==='mail'?`<h3>Correo propuesto (editable)</h3><textarea id="ap-mail">${a.accion.body.replace(/<br>/g,'\n')}</textarea>`:''}
+    ${a.accion.kind==='replan'?`<div class="note">Acción propuesta: mover las pruebas de <b>${esc(a.accion.proyecto)}</b> (${esc(a.accion.delta)}) y avisar internamente. Producción y oficina técnica quedan notificadas en el acta del proyecto.</div>`:''}
+    <div class="act">
+      ${a.accion.kind==='mail'?`<button class="btn" onclick="resolveApproval('${id}','mail')">Aprobar y enviar (simulado)</button>`:''}
+      ${a.accion.kind==='replan'?`<button class="btn" onclick="resolveApproval('${id}','replan')">Aprobar replanificación (simulado)</button>`:''}
+      <button class="btn ghost" onclick="toast('Edición guardada como borrador (simulado)')">Guardar borrador</button>
+      <button class="btn danger" onclick="resolveApproval('${id}','rechazada')">Rechazar</button>
+    </div>`
+  : `<div class="note">Resuelta: ${esc(a.estado)} · ${esc(a.resolucion||'')}</div>`;
+  openDrawer(`<div class="ph"><button class="x" onclick="closeDrawer()">×</button><h2>${esc(a.titulo)}</h2><div class="sub">${a.id} · ${esc(a.tipo)} · prioridad ${esc(a.pri)}</div></div><div class="pb"><p>${esc(a.detalle)}</p>${body}</div>`);
+}
+function resolveApproval(id, how){
+  const a = S.approvals.find(x=>x.id===id); if(!a) return;
+  if(how==='mail'){
+    a.estado='aprobada'; a.resolucion='correo enviado (simulado)';
+    logAct(`Aprobado: ${a.titulo} — correo registrado como enviado (simulado).`);
+    if(a.id==='AP-102'){ const ct=S.certs.find(x=>x.id==='CT-88'); if(ct){ct.estado='solicitado';} const o=S.orders.find(x=>x.id==='PC-2301'); if(o){} }
+  } else if(how==='replan'){
+    a.estado='aprobada'; a.resolucion='pruebas replanificadas (simulado)';
+    const p=S.projects.find(x=>x.id===a.accion.proyecto); if(p){ p.pruebas='26/01'; p.riesgo='medio'; }
+    logAct(`Replanificación aprobada: ${a.accion.proyecto} mueve pruebas (simulado).`);
+  } else { a.estado='rechazada'; a.resolucion='rechazada por el usuario'; logAct(`Rechazada: ${a.titulo}`); }
+  save(); closeDrawer(); renderView(); toast(how==='rechazada'?'Decisión rechazada':'Aprobado y registrado (simulado)');
+}
+
+// ---------- Proyectos ----------
+CFG.views.proj = c => {
+  c.innerHTML = `<div class="row-head"><div><h1>Proyectos en fabricación</h1><div class="sub">Grúas especiales y a medida: seguimiento de fase, materiales críticos y pruebas.</div></div></div>
+  <div class="grid k2">${S.projects.map(p=>`
+    <div class="card" style="cursor:pointer" data-id="${p.id}">
+      <div class="row-head"><h2 style="margin:0">${p.id} · ${esc(p.nombre)}</h2><div class="sp"></div><span class="tag ${p.riesgo==='alto'?'t-red':p.riesgo==='medio'?'t-amb':'t-grn'}">riesgo ${p.riesgo}</span></div>
+      <div class="mut small" style="margin-bottom:8px">${esc(p.cliente)}</div>
+      ${steps(p.fases, p.fase)}
+      <div style="display:flex;align-items:center;gap:10px;margin:10px 0"><div class="bar ${p.riesgo==='alto'?'risk':''}" style="flex:1"><i style="width:${p.progreso}%"></i></div><b>${p.progreso}%</b></div>
+      <div class="kv" style="margin:6px 0">${[['Pruebas de carga',`<b>${p.pruebas}</b>`],['Materiales críticos',p.materiales.map(m=>`${esc(m.desc)} ${tag(EST_M,m.estado)}`).join('<br>')]]}</div>
+    </div>`).join('')}</div>`;
+  c.querySelectorAll('.card[data-id]').forEach(k=>k.addEventListener('click',()=>openProject(k.dataset.id)));
+};
+function openProject(id){
+  const p = S.projects.find(x=>x.id===id);
+  const rel = S.orders.filter(o=>o.proyecto===id);
+  openDrawer(`<div class="ph"><button class="x" onclick="closeDrawer()">×</button><h2>${p.id} · ${esc(p.nombre)}</h2><div class="sub">${esc(p.cliente)} · pruebas: ${p.pruebas}</div></div>
+  <div class="pb">
+    ${steps(p.fases,p.fase)}
+    <h3 style="margin-top:16px">Materiales críticos</h3>
+    ${p.materiales.map(m=>`<div class="matrow"><span class="dot ${['sin-fecha','bloqueado-calidad','retrasado'].includes(m.estado)?'d-red':m.estado==='pendiente'?'d-amb':'d-grn'}"></span><div style="flex:1">${esc(m.desc)}</div>${tag(EST_M,m.estado)}</div>`).join('')}
+    <h3 style="margin-top:16px">Pedidos asociados</h3>
+    ${rel.length?rel.map(o=>`<div class="matrow"><div style="flex:1"><b>${o.id}</b> · ${esc(o.prov)}</div>${tag(EST_O,o.estado)}<span class="b">${fmtE(o.total)}</span></div>`).join(''):'<div class="note">Sin pedidos asociados.</div>'}
+    <div class="note" style="margin-top:14px">Si un material se retrasa, Automio propone replanificar las pruebas y dejar constancia; la decisión la toma el equipo.</div>
+  </div>`);
+}
+
+// ---------- Compras ----------
+let FLT = {estado:'todos', q:''};
+CFG.views.compras = c => {
+  const counts = {todos:S.orders.length};
+  ['retrasado','bloqueado','sin-confirmar','parcial','enviado','confirmado','recibido'].forEach(k=>counts[k]=S.orders.filter(o=>o.estado===k).length);
+  let rows = S.orders.filter(o=>(FLT.estado==='todos'||o.estado===FLT.estado) && (!FLT.q || (o.id+o.prov+o.proyecto).toLowerCase().includes(FLT.q)));
+  c.innerHTML = `<div class="row-head"><div><h1>Pedidos de compra</h1><div class="sub">Pocas líneas por proyecto, largo plazo y trazabilidad de certificados.</div></div><div class="sp"></div><button class="btn ghost" onclick="nuevoPedido()">+ Nuevo pedido (borrador)</button></div>
+  ${chipRow([{key:'todos',label:'Todos',count:counts.todos},{key:'retrasado',label:'Retrasados',count:counts.retrasado},{key:'bloqueado',label:'Bloqueados',count:counts.bloqueado},{key:'sin-confirmar',label:'Sin confirmar',count:counts['sin-confirmar']},{key:'parcial',label:'Parciales',count:counts.parcial},{key:'recibido',label:'Recibidos',count:counts.recibido}], FLT.estado, 'setFltEstado')}
+  <div class="tools"><input type="search" placeholder="Buscar pedido, proveedor o proyecto…" value="${esc(FLT.q)}" oninput="setFltQ(this.value)"></div>
+  <div id="tbl">${tableHTML([
+    {k:'id',l:'Pedido',f:o=>`<b>${o.id}</b>`},
+    {k:'prov',l:'Proveedor',f:o=>esc(o.prov),wrap:true},
+    {k:'proy',l:'Proyecto',f:o=>`<span class="tag t-blu">${o.proyecto}</span>`},
+    {k:'lin',l:'Líneas',f:o=>o.lineas.length,num:true},
+    {k:'total',l:'Total',f:o=>fmtE(o.total),num:true},
+    {k:'ent',l:'Entrega',f:o=>esc(o.entrega),wrap:true},
+    {k:'est',l:'Estado',f:o=>tag(EST_O,o.estado)}
+  ], rows)}</div>`;
+  attachRowClicks(c, rows, openOrder);
+};
+function setFltEstado(k){FLT.estado=k;renderView();}
+function setFltQ(v){FLT.q=v.toLowerCase();renderView();const i=document.querySelector('input[type=search]');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}}
+
+function openOrder(o){
+  drawerState = {tab:'lin', render:()=>renderOrderDrawer(o.id)};
+  renderOrderDrawer(o.id);
+}
+function renderOrderDrawer(oid){
+  const o = S.orders.find(x=>x.id===oid);
+  const tabs = [{id:'lin',l:'Líneas'},{id:'seg',l:'Seguimiento'},{id:'doc',l:'Documentos'}];
+  let body='';
+  if(drawerState.tab==='lin'){
+    body = tableHTML([
+      {k:'d',l:'Descripción',f:l=>esc(l.desc),wrap:true},
+      {k:'q',l:'Ud.',f:l=>l.qty,num:true},
+      {k:'p',l:'Precio ud.',f:l=>fmtE(l.precio),num:true},
+      {k:'e',l:'Estado',f:l=>tag(EST_L,l.estado)},
+      {k:'c',l:'Cert. 3.1',f:l=>l.cert==='no-aplica'?'<span class="mut">n/a</span>':l.cert==='recibido'?'<span class="tag t-grn">recibido</span>':`<span class="tag t-amb">pendiente</span>`}
+    ], o.lineas, {foot:`Total: ${fmtE(o.total)}`});
+  } else if(drawerState.tab==='seg'){
+    body = `<ul class="tl">
+      <li><b>Pedido emitido</b><span class="w">hace 12 días · por la oficina de compras</span></li>
+      ${o.estado!=='borrador'?'<li><b>Enviado al proveedor</b><span class="w">hace 11 días</span></li>':''}
+      ${['confirmado','parcial','recibido','retrasado'].includes(o.estado)?'<li><b>Confirmado por el proveedor</b><span class="w">hace 9 días</span></li>':''}
+      ${o.estado==='retrasado'?'<li><b>Aviso de retraso</b><span class="w">hace 2 días · nueva fecha comunicada</span></li>':''}
+      ${o.estado==='parcial'?'<li><b>Recepción parcial registrada</b><span class="w">ayer</span></li>':''}
+      ${o.estado==='bloqueado'?'<li><b>Recepción bloqueada en calidad</b><span class="w">falta certificado 3.1 de la colada H-7742</span></li>':''}
+    </ul><div class="note">Historial de ejemplo. En producción se alimenta de los correos y recepciones reales.</div>`;
+  } else {
+    body = `<div class="docview">📄 Pedido ${o.id}.pdf (ejemplo)<br><span class="mut">Albarán de entrega — pendiente</span><br><span class="mut">Certificado 3.1 — ver módulo Certificados</span></div>
+    <div class="act"><button class="btn ghost" onclick="toast('Documento adjuntado (simulado)')">Adjuntar documento (simulado)</button></div>`;
+  }
+  const acciones = [];
+  if(o.estado!=='recibido'){
+    acciones.push(`<button class="btn" onclick="mailSeguimiento('${o.id}')">Preparar seguimiento</button>`);
+    if(o.lineas.some(l=>l.estado!=='recibido')) acciones.push(`<button class="btn soft" onclick="recepcionParcial('${o.id}')">Registrar recepción</button>`);
+  }
+  document.querySelector('#drawer .panel').innerHTML = `<div class="ph"><button class="x" onclick="closeDrawer()">×</button><h2>${o.id} · ${esc(o.prov)}</h2><div class="sub">Proyecto ${o.proyecto} · entrega: ${esc(o.entrega)} · ${tag(EST_O,o.estado)}</div>${drawerTabs(tabs, drawerState.tab)}</div><div class="pb">${body}<div class="act">${acciones.join('')}</div></div>`;
+}
+function mailSeguimiento(oid){
+  const o = S.orders.find(x=>x.id===oid);
+  openDrawer(`<div class="ph"><button class="x" onclick="closeDrawer()">×</button><h2>Seguimiento de ${o.id}</h2><div class="sub">El correo lo revisas antes de que salga (simulado)</div></div>
+  <div class="pb"><textarea id="sg-mail">Buenos días,\n\nescribimos sobre el pedido ${o.id} (${o.lineas.map(l=>l.desc).join('; ')}). Estado actual: ${EST_O[o.estado][1].toLowerCase()}. Necesitamos confirmación de fecha y cualquier incidencia que pueda afectar al proyecto ${o.proyecto}.\n\nGracias, un saludo.</textarea>
+  <div class="act"><button class="btn" onclick="enviarSeguimiento('${o.id}')">Aprobar y enviar (simulado)</button><button class="btn ghost" onclick="openOrder(S.orders.find(x=>x.id==='${o.id}'))">Volver</button></div></div>`);
+}
+function enviarSeguimiento(oid){ logAct(`Seguimiento de ${oid} aprobado y registrado como enviado (simulado).`); save(); closeDrawer(); renderView(); toast('Correo registrado como enviado (simulado)'); }
+function recepcionParcial(oid){
+  const o = S.orders.find(x=>x.id===oid);
+  const pend = o.lineas.filter(l=>l.estado!=='recibido');
+  if(!pend.length) return;
+  const l = pend[0]; l.estado='recibido';
+  o.estado = o.lineas.every(x=>x.estado==='recibido') ? 'recibido' : 'parcial';
+  logAct(`Recepción registrada en ${oid}: ${l.desc} (simulado).`);
+  save(); renderOrderDrawer(oid); renderShell(); toast('Recepción registrada (simulado)');
+}
+function nuevoPedido(){
+  const n = 'PC-' + (2321 + S.orders.filter(o=>o.id.startsWith('PC-')).length);
+  S.orders.unshift({id:n, prov:'(sin asignar)', proyecto:'—', estado:'borrador', total:0, entrega:'—', lineas:[{desc:'Línea nueva (editar)', qty:1, precio:0, estado:'pendiente', cert:'no-aplica'}]});
+  logAct(`Borrador ${n} creado (simulado).`); save(); renderView(); toast('Borrador creado'); openOrder(S.orders[0]);
+}
+
+// ---------- Certificados ----------
+CFG.views.cert = c => {
+  c.innerHTML = `<div class="row-head"><div><h1>Certificados 3.1 (EN 10204)</h1><div class="sub">Trazabilidad de coladas: sin certificado, el material no se libera a producción.</div></div></div>
+  ${tableHTML([
+    {k:'id',l:'Cert.',f:x=>`<b>${x.id}</b>`},
+    {k:'comp',l:'Componente',f:x=>esc(x.componente),wrap:true},
+    {k:'ped',l:'Pedido',f:x=>x.pedido},
+    {k:'col',l:'Colada',f:x=>esc(x.colada)},
+    {k:'doc',l:'Documento',f:x=>esc(x.doc),wrap:true},
+    {k:'e',l:'Estado',f:x=>x.estado==='recibido'?'<span class="tag t-grn">recibido</span>':x.estado==='solicitado'?'<span class="tag t-blu">solicitado</span>':`<span class="tag t-amb">pendiente</span>`},
+    {k:'a',l:'',f:x=>x.estado!=='recibido'?`<button class="btn soft" onclick="event.stopPropagation();certRecibido('${x.id}')">Marcar recibido</button>`:''}
+  ], S.certs)}
+  <div class="note" style="margin-top:12px">En producción, el certificado llega por correo, se lee, se casa con la colada y se propone liberar el material; la liberación la aprueba calidad.</div>`;
+};
+function certRecibido(id){
+  const x = S.certs.find(c=>c.id===id); x.estado='recibido'; x.doc='cert-3.1-'+x.colada+'.pdf (ejemplo)';
+  if(x.pedido==='PC-2301'){ const o=S.orders.find(o=>o.id==='PC-2301'); if(o){o.estado='recibido';} const p=S.projects.find(p=>p.id==='GM-120'); if(p){const m=p.materiales.find(m=>m.desc.includes('S690 40')); if(m)m.estado='recibido';} }
+  logAct(`Certificado ${id} marcado como recibido (simulado).`); save(); renderView(); toast('Certificado registrado (simulado)');
+}
+
+// ---------- Proveedores ----------
+CFG.views.prov = c => {
+  c.innerHTML = `<div class="row-head"><div><h1>Proveedores</h1><div class="sub">Fiabilidad y comportamiento histórico (datos de ejemplo).</div></div></div>
+  ${tableHTML([
+    {k:'n',l:'Proveedor',f:p=>`<b>${esc(p.nombre)}</b><div class="mut small">${esc(p.cat)}</div>`,wrap:true},
+    {k:'o',l:'Entregas a tiempo',f:p=>`<div style="display:flex;align-items:center;gap:8px"><div class="bar ${p.otif<80?'risk':p.otif<90?'warn':'ok'}" style="width:90px"><i style="width:${p.otif}%"></i></div>${p.otif}%</div>`},
+    {k:'q',l:'Calidad',f:p=>`<div style="display:flex;align-items:center;gap:8px"><div class="bar ok" style="width:90px"><i style="width:${p.calidad}%"></i></div>${p.calidad}%</div>`},
+    {k:'pd',l:'Pedidos',f:p=>p.pedidos,num:true},
+    {k:'u',l:'Último',f:p=>p.ultimo},
+    {k:'nt',l:'Nota',f:p=>`<span class="mut small">${esc(p.nota)}</span>`,wrap:true}
+  ], S.suppliers)}
+  <div class="note" style="margin-top:12px">Nombres de proveedores ficticios marcados como ejemplo. Los índices (entregas a tiempo, calidad) se calcularían de las recepciones reales.</div>`;
+};
+
+// ---------- Actividad ----------
+CFG.views.act = c => {
+  c.innerHTML = `<div class="row-head"><div><h1>Actividad</h1><div class="sub">Todo lo hecho en esta demo, con hora.</div></div><div class="sp"></div><button class="btn ghost" onclick="resetDemo()">Reiniciar demo</button></div>
+  <ul class="tl">${S.activity.map(a=>`<li><b>${esc(a.text)}</b><span class="w">${new Date(a.ts).toLocaleString('es-ES')}</span></li>`).join('')}</ul>`;
+};
+
+// Automio OS · demo framework (datos de ejemplo, todo simulado en local)
+const LSKEY = 'automio-demo-' + CFG.slug;
+let S = loadState();
+function loadState(){
+  try{ const raw = localStorage.getItem(LSKEY); if(raw){ const p = JSON.parse(raw); if(p && p.v === CFG.v) return p.s; } }catch(e){}
+  return JSON.parse(JSON.stringify(CFG.initial));
+}
+function save(){ try{ localStorage.setItem(LSKEY, JSON.stringify({v:CFG.v, s:S})); }catch(e){} }
+function resetDemo(){ localStorage.removeItem(LSKEY); location.reload(); }
+
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtN = (n,d=0) => Number(n).toLocaleString(CFG.locale,{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtE = n => fmtN(n,2) + ' €';
+const $ = sel => document.querySelector(sel);
+const el = html => { const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; };
+
+let VIEW = location.hash ? location.hash.slice(1) : CFG.home;
+let drawerState = null;
+
+const ICONS = {
+  panel:'M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z',
+  inbox:'M3 5h18v14H3zM3 7l9 6 9-6',
+  compras:'M4 4h2l2.5 11h10L21 7H7M9 20a1 1 0 100-2 1 1 0 000 2M18 20a1 1 0 100-2 1 1 0 000 2',
+  prov:'M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6',
+  docs:'M7 3h7l5 5v13H7zM14 3v5h5',
+  prod:'M4 20V10l5 3v-3l5 3V6h6v14z',
+  cert:'M12 3l2.5 5 5.5.8-4 4 1 5.7-5-2.7-5 2.7 1-5.7-4-4L9.5 8z',
+  act:'M12 8v5l3 2M12 21a9 9 0 110-18 9 9 0 010 18',
+  conf:'M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1',
+  proj:'M3 7h18M3 7v13h18V7M3 7l2-4h14l2 4M10 11h4',
+  logi:'M1 8h13v9H1zM14 11h4l3 3v3h-7zM5.5 20a1.5 1.5 0 100-3 1.5 1.5 0 000 3M16.5 20a1.5 1.5 0 100-3 1.5 1.5 0 000 3',
+  spare:'M14 7a4 4 0 105.6 5.6L14 7zm0 0L8 13m-3 8l6-6',
+  search:'M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35'
+};
+function icon(name){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${ICONS[name]||ICONS.panel}"/></svg>`; }
+
+function renderShell(){
+  const mods = CFG.modules.map(m => {
+    if(m.sec) return `<div class="sec">${esc(m.sec)}</div>`;
+    const badge = m.badge ? `<span class="n">${typeof m.badge==='function'?m.badge(S):m.badge}</span>` : '';
+    return `<a data-v="${m.id}" class="${VIEW===m.id?'on':''}" onclick="go('${m.id}')">${icon(m.icon)}<span>${esc(m.label)}</span>${badge}</a>`;
+  }).join('');
+  document.getElementById('app').innerHTML = `
+  <aside id="side">
+    <div class="brand"><div class="logo"><div class="mark">${esc(CFG.mark)}</div><div><div class="bn">${esc(CFG.company)}</div><div class="bs">AUTOMIO OS · DEMO</div></div></div></div>
+    <nav>${mods}</nav>
+    <div class="side-foot">${CFG.t.foot}</div>
+  </aside>
+  <main>
+    <div class="topbar">
+      <div class="crumb">${esc(CFG.company)} · ${esc((CFG.modules.find(m=>m.id===VIEW)||{}).label||'')}</div>
+      <div class="sp"></div>
+      <span class="pill">${CFG.t.pill}</span>
+      <div class="avatar">${esc(CFG.userIni)}</div>
+    </div>
+    <div class="content" id="content"></div>
+  </main>
+  <div class="drawer" id="drawer" onclick="if(event.target===this)closeDrawer()"></div>
+  <div class="toast" id="toast"></div>`;
+  renderView();
+}
+function go(v){ VIEW=v; location.hash=v; renderShell(); window.scrollTo(0,0); }
+window.addEventListener('hashchange',()=>{ const v=location.hash.slice(1); if(v&&v!==VIEW){VIEW=v;renderShell();} });
+
+function renderView(){
+  const m = CFG.modules.find(x=>x.id===VIEW) || CFG.modules.find(x=>x.id===CFG.home);
+  const c = document.getElementById('content'); if(!c) return;
+  c.innerHTML = '';
+  (CFG.views[m.id]||CFG.views[CFG.home])(c);
+  document.querySelector('.topbar .crumb').innerHTML = `${esc(CFG.company)} · ${esc(m.label)}`;
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on', a.dataset.v===m.id));
+}
+
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.style.display='block'; clearTimeout(t._h); t._h=setTimeout(()=>t.style.display='none',2800); }
+
+function openDrawer(html){ const d=$('#drawer'); d.innerHTML=`<div class="panel">${html}</div>`; d.classList.add('on'); }
+function closeDrawer(){ $('#drawer').classList.remove('on'); drawerState=null; }
+
+function logAct(text){ S.activity.unshift({ts:new Date().toISOString(), text}); if(S.activity.length>200)S.activity.length=200; save(); }
+
+function chipRow(groups, active, onpick){
+  // groups: [{key,label,count}]
+  return `<div class="tools">${groups.map(g=>`<button class="chip ${active===g.key?'on':''}" onclick="${onpick}('${g.key}')">${esc(g.label)}${g.count!=null?` <span class="c">${g.count}</span>`:''}</button>`).join('')}</div>`;
+}
+
+function tableHTML(cols, rows, opts={}){
+  const rowFn = opts.rowFn || (()=> '');
+  const head = cols.map(c=>`<th style="${c.w?`width:${c.w}`:''}">${esc(c.l)}</th>`).join('');
+  const body = rows.length ? rows.map((r,i)=>`<tr class="row" data-i="${i}" ${rowFn(r,i)}>${cols.map(c=>`<td class="${c.wrap?'wrap':''}" style="${c.num?'text-align:right':''}">${c.f(r)}</td>`).join('')}</tr>`).join('') : `<tr><td colspan="${cols.length}" class="mut" style="text-align:center;padding:26px">${esc(opts.empty||CFG.t.empty)}</td></tr>`;
+  const foot = opts.foot || `${rows.length} ${CFG.t.records}`;
+  return `<div class="tw"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table><div class="tfoot">${foot}</div></div>`;
+}
+
+function attachRowClicks(root, rows, onclick){
+  root.querySelectorAll('tr.row').forEach(tr=>tr.addEventListener('click',ev=>{
+    if(ev.target.closest('button')||ev.target.closest('input')||ev.target.closest('select')||ev.target.closest('a')) return;
+    onclick(rows[+tr.dataset.i]);
+  }));
+}
+
+function steps(items, cur){
+  return `<div class="progress-steps">${items.map((s,i)=>`<div class="st ${i<cur?'done':i===cur?'now':''}">${esc(s)}</div>`).join('')}</div>`;
+}
+
+function kv(pairs){ return `<div class="kv">${pairs.map(([k,v])=>`<div>${esc(k)}</div><div>${v}</div>`).join('')}</div>`; }
+
+function mailPreview(m){
+  return `<div class="mailprev"><div class="mh">${esc(CFG.t.mailto)}: ${esc(m.to)} · ${esc(CFG.t.mailsubj)}: ${esc(m.subj)}</div>${m.body}</div>`;
+}
+
+function drawerTabs(tabs, active){
+  return `<div class="tabs">${tabs.map(t=>`<button class="${t.id===active?'on':''}" onclick="drawerState.tab='${t.id}';renderDrawerBody()">${esc(t.l)}</button>`).join('')}</div>`;
+}
+function renderDrawerBody(){ if(drawerState&&drawerState.render) drawerState.render(); }
+
+document.addEventListener('DOMContentLoaded', renderShell);
+
 </script></body></html>
