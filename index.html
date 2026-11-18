@@ -150,10 +150,10 @@ const CFG = {
   initial:{
     approvals:[
       {id:'AP-101', pri:'alta', tipo:'Seguimiento', estado:'pendiente',
-        titulo:'Corona de giro Ø1.250 sin fecha confirmada · GM-120',
-        detalle:'El pedido PC-2308 (corona de giro Ø1.250 mm, tratada) lleva 6 días sin confirmación de fecha. La grúa marina GM-120 tiene las pruebas de carga previstas el 12/12.',
-        why:'Sin corona no hay montaje del giro; cada semana de retraso mueve las pruebas y la entrega al astillero.',
-        accion:{kind:'mail', to:'comercial@proveedor-ejemplo.es', subj:'PC-2308 · Confirmación de fecha de entrega — corona de giro Ø1.250', body:'Buenos días,<br><br>necesitamos confirmación firme de la fecha de entrega de la corona de giro Ø1.250 mm (pedido PC-2308). Las pruebas de carga de la GM-120 están previstas el 12/12 y cualquier desplazamiento afecta a la entrega.<br><br>Gracias, un saludo.'}},
+        titulo:'Rodamiento de giro Ø1.250 sin fecha confirmada · GM-120',
+        detalle:'El pedido PC-2308 (rodamiento de giro Ø1.250 mm) lleva 6 días sin confirmación de fecha. La grúa marina GM-120 tiene las pruebas de carga previstas el 12/12.',
+        why:'Sin el rodamiento no hay montaje del giro; cada semana de retraso mueve las pruebas y la entrega al astillero.',
+        accion:{kind:'mail', to:'comercial@proveedor-ejemplo.es', subj:'PC-2308 · Confirmación de fecha de entrega — rodamiento de giro Ø1.250', body:'Buenos días,<br><br>necesitamos confirmación firme de la fecha de entrega del rodamiento de giro Ø1.250 mm (pedido PC-2308). Las pruebas de carga de la GM-120 están previstas el 12/12 y cualquier desplazamiento afecta a la entrega.<br><br>Gracias, un saludo.'}},
       {id:'AP-102', pri:'alta', tipo:'Certificado', estado:'pendiente',
         titulo:'Certificado 3.1 (EN 10204) pendiente · acero S690 chapas 40 mm',
         detalle:'La recepción de las chapas de S690 del PC-2301 está bloqueada en calidad hasta recibir el certificado 3.1 de la colada H-7742.',
@@ -170,7 +170,7 @@ const CFG = {
         {desc:'Chapa acero S690, 40 mm (6 uds)', qty:6, precio:2410, estado:'recibido', cert:'pendiente'},
         {desc:'Chapa acero S690, 25 mm (4 uds)', qty:4, precio:1005, estado:'recibido', cert:'recibido'}]},
       {id:'PC-2308', prov:'Mecanizados Rotor S.L. (ejemplo)', proyecto:'GM-120', estado:'sin-confirmar', total:6900, entrega:'sin fecha', lineas:[
-        {desc:'Corona de giro Ø1.250 mm, tratada', qty:1, precio:6900, estado:'en-fabricacion', cert:'no-aplica'}]},
+        {desc:'Rodamiento de giro Ø1.250 mm', qty:1, precio:6900, estado:'en-fabricacion', cert:'no-aplica'}]},
       {id:'PC-2312', prov:'Hidráulica Delta S.A. (ejemplo)', proyecto:'GC-450', estado:'retrasado', total:21300, entrega:'09/01 (antes 26/12)', lineas:[
         {desc:'Grupo hidráulico 90 kW, doble efecto', qty:1, precio:19800, estado:'retrasado', cert:'no-aplica'},
         {desc:'Racorería y tubo rígido inox (lote)', qty:1, precio:1500, estado:'recibido', cert:'no-aplica'}]},
@@ -184,7 +184,7 @@ const CFG = {
     ],
     projects:[
       {id:'GM-120', nombre:'Grúa marina 12 t · brazo telescópico', cliente:'Astillero (exportación) — ejemplo', fase:2, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:58, pruebas:'12/12', riesgo:'alto',
-        materiales:[{desc:'Corona de giro Ø1.250', estado:'sin-fecha'},{desc:'Chapas S690 40 mm', estado:'bloqueado-calidad'},{desc:'Pistones bronce', estado:'en-fecha'}]},
+        materiales:[{desc:"Rodamiento de giro Ø1.250", estado:'sin-fecha'},{desc:'Chapas S690 40 mm', estado:'bloqueado-calidad'},{desc:'Pistones bronce', estado:'en-fecha'}]},
       {id:'GC-450', nombre:'Grúa sobre camión 45 t', cliente:'Operador logístico — ejemplo', fase:1, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:34, pruebas:'22/01', riesgo:'medio',
         materiales:[{desc:'Grupo hidráulico 90 kW', estado:'retrasado'},{desc:'Racorería inox', estado:'recibido'}]},
       {id:'GE-60', nombre:'Grúa estática 6 t · gestión de residuos', cliente:'Planta de clasificación — ejemplo', fase:1, fases:['Ingeniería','Fabricación','Montaje','Pruebas','Entrega'], progreso:21, pruebas:'05/02', riesgo:'bajo',
@@ -200,7 +200,7 @@ const CFG = {
     ],
     suppliers:[
       {id:'PR-01', nombre:'Aceros Altares S.A. (ejemplo)', cat:'Aceros de alta resistencia', otif:86, calidad:92, pedidos:14, ultimo:'PC-2319', nota:'Certificados 3.1 a veces tardíos.'},
-      {id:'PR-02', nombre:'Mecanizados Rotor S.L. (ejemplo)', cat:'Coronas de giro y mecanizado grande', otif:74, calidad:95, pedidos:6, ultimo:'PC-2308', nota:'Plazos largos; confirmar fecha al emitir pedido.'},
+      {id:'PR-02', nombre:'Mecanizados Rotor S.L. (ejemplo)', cat:'Rodamientos de giro y mecanizado grande', otif:74, calidad:95, pedidos:6, ultimo:'PC-2308', nota:'Plazos largos; confirmar fecha al emitir pedido.'},
       {id:'PR-03', nombre:'Hidráulica Delta S.A. (ejemplo)', cat:'Grupos hidráulicos y componentes', otif:81, calidad:88, pedidos:11, ultimo:'PC-2320', nota:'Último trimestre con dos retrasos.'},
       {id:'PR-04', nombre:'Bronces y Cierres S.A. (ejemplo)', cat:'Bronces y tornillería inox', otif:95, calidad:97, pedidos:9, ultimo:'PC-2315', nota:'Fiable.'}
     ],
