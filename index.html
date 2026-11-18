@@ -121,6 +121,9 @@ tr.sel td{background:var(--acc-soft)}
 .empty{text-align:center;padding:38px 20px;color:var(--mut)}
 .empty .eic{width:44px;height:44px;border-radius:12px;background:#f2f4f7;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px;color:#98a2b3}
 .mob-hdr{display:none}
+.acards{display:none}
+.acard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.acard .arow{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
 @media(max-width:880px){
  body{flex-direction:column}
  nav{display:none}
@@ -132,6 +135,8 @@ tr.sel td{background:var(--acc-soft)}
  .content{padding:14px}
  header{padding:10px 14px;flex-wrap:wrap}
  .hide-m{display:none}
+ .atable-wrap{display:none}
+ .acards{display:flex;flex-direction:column;gap:10px}
  .drawer{width:100vw}
  table{min-width:560px}
 }
@@ -284,10 +289,11 @@ ${o.est==="En riesgo"||o.est==="Borrador"?`<div style="margin-top:14px;padding:1
 function vAprob(){const roles=["","Compras","Gerencia","Producción","Almacén"];
 const list=APPR.filter(a=>!role||a.rol===role);
 view.innerHTML=`<div class="toolbar">${roles.map(r=>`<button class="fchip ${role===r?"on":""}" onclick="setRole('${r}')">${r||"Todos los roles"}</button>`).join("")}<span class="mono" style="margin-left:auto">${list.length} decisiones</span></div>
-<div class="card"><h3>Esperando decisión humana <span class="sub">· nada se envía ni se aplica sin aprobación</span></h3><table>
+<div class="card"><h3>Esperando decisión humana <span class="sub">· nada se envía ni se aplica sin aprobación</span></h3><div class="atable-wrap"><table>
 <tr><th>Decisión</th><th>Para</th><th class="hide-m">Solicitante</th><th>SLA</th><th></th></tr>
 ${list.map(a=>`<tr onclick="openAppr('${a.id}')"><td><b>${a.tit}</b><br><span class="mono">${a.tipo}</span></td><td><span class="req"><span class="ra">${a.para[0]}</span><span>${a.para[1]} · <span class="mono">${a.rol}</span></span></span></td><td class="hide-m mono">${a.req}</td><td><span class="sla ${a.sla[1]}">${a.sla[0]}</span></td><td onclick="event.stopPropagation()" style="white-space:nowrap"><button class="btn danger sm" onclick="alert('Rechazado (demo)')">Rechazar</button> <button class="btn sm" onclick="openAppr('${a.id}')">Revisar</button></td></tr>`).join("")||`<tr><td colspan="5"><div class="empty"><div class="eic">${ICO.aprob}</div><div><b>Nada pendiente para este rol</b><br>Cuando haya una decisión suya, aparecerá aquí.</div></div></td></tr>`}</table>
-<div class="pgfooter">Mostrando ${list.length} de ${APPR.length} · ordenado por SLA</div></div>`}
+<div class="pgfooter">Mostrando ${list.length} de ${APPR.length} · ordenado por SLA</div></div>
+<div class="acards">${list.map(a=>`<div class="acard" onclick="openAppr('${a.id}')"><b>${a.tit}</b><br><span class="mono">${a.tipo}</span><div class="arow"><span class="req"><span class="ra">${a.para[0]}</span><span>${a.para[1]} · <span class="mono">${a.rol}</span></span></span><span class="sla ${a.sla[1]}" style="margin-left:auto">${a.sla[0]}</span></div><div class="arow" onclick="event.stopPropagation()"><button class="btn danger sm" onclick="alert('Rechazado (demo)')">Rechazar</button> <button class="btn sm" onclick="openAppr('${a.id}')">Revisar</button></div></div>`).join("")||`<div class="empty"><div class="eic">${ICO.aprob}</div><div><b>Nada pendiente para este rol</b></div></div>`}</div></div>`}
 function openAppr(id){const a=APPR.find(x=>x.id===id);
 openDrawer(a.tit,`<div class="kv"><span class="k">Tipo</span><span><span class="pill p-mut">${a.tipo}</span></span><span class="k">Decide</span><span><b>${a.para[1]}</b> · ${a.rol}</span><span class="k">Solicitante</span><span>${a.req}</span><span class="k">SLA</span><span><span class="sla ${a.sla[1]}">${a.sla[0]}</span></span></div>
 <p style="font-size:12.8px;color:var(--mut)">${a.det}</p><p style="font-size:12.8px"><b>Acción propuesta:</b> ${a.acc}</p>
